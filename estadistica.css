@@ -440,3 +440,137 @@ nav a:hover {
     color: var(--apagado);
     line-height: 1.6;
 }
+
+/* ── CAJA DE FÓRMULA ──
+   Bloque estilo terminal para mostrar expresiones matemáticas */
+.formula {
+    background: var(--superficie2);
+    border: 1px solid var(--borde);
+    border-left: 3px solid var(--acento);
+    /* Línea amarilla a la izquierda como marcador */
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    font-family: 'DM Mono', monospace;
+    /* Fuente monoespaciada para matemáticas */
+    font-size: 0.9rem;
+    margin: 1rem 0;
+    color: var(--acento2);
+    /* Texto azul para destacar */
+    overflow-x: auto;
+    /* Scroll horizontal si la fórmula es muy larga */
+}
+
+/* ── BLOQUE DE EJEMPLO ──
+   Contenedor para ejemplos prácticos con datos reales */
+.bloque-ejemplo {
+    background: var(--superficie);
+    border: 1px solid var(--borde);
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 2rem 0;
+}
+
+/* Título del bloque de ejemplo */
+.bloque-ejemplo h4 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    color: var(--acento);
+    /* Color dorado para destacar el título */
+}
+
+/* Contenedor de las pastillas de datos individuales */
+.pastillas-datos {
+    display: flex;
+    flex-wrap: wrap;
+    /* Baja a la siguiente línea si no caben */
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Pastilla individual que representa un dato */
+.pastilla {
+    background: var(--superficie2);
+    border: 1px solid var(--borde);
+    border-radius: 6px;
+    padding: 0.35rem 0.7rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--texto);
+}
+
+/* Pastilla resaltada — para el dato especial (ej. mediana, moda) */
+.pastilla.resaltada {
+    border-color: var(--acento);
+    color: var(--acento);
+    background: rgba(240, 192, 64, 0.08);
+    /* Fondo amarillo muy tenue */
+}
+
+/* Fila de resultado clave-valor */
+.fila-resultado {
+    display: flex;
+    justify-content: space-between;
+    /* Texto a la izquierda, valor a la derecha */
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--borde);
+    /* Separador entre filas */
+    font-size: 0.95rem;
+}
+
+/* La última fila no lleva separador inferior */
+.fila-resultado:last-child {
+    border-bottom: none;
+}
+
+/* Etiqueta (lado izquierdo) */
+.fila-resultado span:first-child {
+    color: var(--apagado);
+}
+
+/* Valor numérico (lado derecho) */
+.fila-resultado span:last-child {
+    font-family: 'DM Mono', monospace;
+    font-weight: 500;
+    color: var(--acento2);
+    /* Azul para los números */
+}
+
+/* ── SECCIÓN DE TEMA ──
+   Contenedor de cada tema individual dentro de la sección de ejemplos */
+.seccion-tema {
+    border-top: 1px solid var(--borde);
+    /* Línea separadora entre temas */
+    padding: 3rem 0;
+}
+
+/* Encabezado del tema con etiqueta y título en fila */
+.encabezado-tema {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Etiqueta de número de tema (ej. "TEMA 1 & 2") */
+.etiqueta-tema {
+    background: var(--superficie2);
+    border: 1px solid var(--borde);
+    border-radius: 8px;
+    padding: 0.5rem 0.9rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--acento);
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+    /* Evita que el texto se parta en dos líneas */
+}
+
+/* Título del tema */
+.seccion-tema h3 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+}

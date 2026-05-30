@@ -74,6 +74,70 @@
         </div>
     </section>
 
+    <!-- ── SECCIÓN DE TEMAS CON EJEMPLOS ── -->
+    <section id="ejemplos"> <!-- id="ejemplos" para la navegación del menú -->
+        <div class="etiqueta-seccion">// 02 · Fundamento matemático</div>
+        <h2>Temas con ejemplos</h2>
+        <p class="intro-seccion">Cada concepto explicado con su fórmula y un ejemplo práctico paso a paso.</p>
+
+        <!-- ── TEMA 1 & 2: MEDIA / PROMEDIO ── -->
+        <div class="seccion-tema">
+            <div class="encabezado-tema">
+                <span class="etiqueta-tema">TEMA 1 & 2</span>
+                <h3>Media / Promedio (μ)</h3>
+            </div>
+            <!-- Definición del concepto -->
+            <p>La <strong>media aritmética</strong> es la suma de todos los valores dividida entre la cantidad de datos.
+            </p>
+            <!-- Fórmula matemática en notación de código -->
+            <div class="formula">μ = (x₁ + x₂ + … + xₙ) / n</div>
+            <div class="bloque-ejemplo">
+                <h4>📊 Ejemplo: Calificaciones de un alumno</h4>
+                <p style="font-size:0.93rem;color:var(--apagado);margin-bottom:1rem;">Datos: <strong>72, 85, 90, 78, 95,
+                        88</strong></p>
+                <!-- Cálculo paso a paso -->
+                <div class="formula">μ = (72 + 85 + 90 + 78 + 95 + 88) / 6 = 508 / 6 ≈ 84.67</div>
+                <div class="fila-resultado"><span>Suma total</span><span>508</span></div>
+                <div class="fila-resultado"><span>Cantidad de datos (n)</span><span>6</span></div>
+                <div class="fila-resultado"><span>Media</span><span>84.67</span></div>
+                <p style="margin-top:1rem;font-size:0.9rem;color:var(--apagado);">✔ El promedio de 84.67 indica un
+                    rendimiento <em>notable</em>.</p>
+            </div>
+        </div>
+
+        <!-- ── TEMA 3: MEDIANA ── -->
+        <div class="seccion-tema">
+            <div class="encabezado-tema">
+                <span class="etiqueta-tema">TEMA 3</span>
+                <h3>Mediana</h3>
+            </div>
+            <p>La <strong>mediana</strong> es el valor central cuando los datos están ordenados.</p>
+            <!-- Los dos casos posibles de la fórmula -->
+            <div class="formula">
+                Si n es impar → valor central<br />
+                Si n es par → (valor[n/2] + valor[n/2+1]) / 2
+            </div>
+            <div class="bloque-ejemplo">
+                <h4>📊 Ejemplo: Ventas diarias</h4>
+                <p style="font-size:0.93rem;color:var(--apagado);margin-bottom:0.75rem;">Sin ordenar: <strong>15, 8, 23,
+                        5, 19</strong></p>
+                <p style="font-size:0.93rem;color:var(--apagado);margin-bottom:1rem;">Ordenados: <strong>5, 8, 15, 19,
+                        23</strong></p>
+                <!-- El dato central va con clase resaltada -->
+                <div class="pastillas-datos">
+                    <span class="pastilla">5</span>
+                    <span class="pastilla">8</span>
+                    <span class="pastilla resaltada">15 ← mediana</span> <!-- Dato central -->
+                    <span class="pastilla">19</span>
+                    <span class="pastilla">23</span>
+                </div>
+                <div class="fila-resultado"><span>n (impar)</span><span>5</span></div>
+                <div class="fila-resultado"><span>Posición central</span><span>3ra</span></div>
+                <div class="fila-resultado"><span>Mediana</span><span>15</span></div>
+            </div>
+        </div>
+    </section>
+
     <!-- ── PIE DE PÁGINA ── -->
     <footer>
         Estadística Aplicada · Matemática 1 &nbsp;|&nbsp; Material de Estudio &nbsp;|&nbsp; Desarrollado con IA como
