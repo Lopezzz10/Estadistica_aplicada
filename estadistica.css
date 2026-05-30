@@ -6,248 +6,437 @@
    Define los colores y sombras reutilizables en todo el sitio.
    Al cambiar un valor aquí se actualiza en toda la página automáticamente. */
 :root {
-  --fondo: #0b0f1a;           /* Color de fondo principal (azul muy oscuro) */
-  --superficie: #111827;      /* Fondo de tarjetas y secciones */
-  --superficie2: #1a2235;     /* Fondo secundario más claro */
-  --acento: #f0c040;          /* Amarillo dorado — color principal de énfasis */
-  --acento2: #38bdf8;         /* Azul claro — color secundario */
-  --acento3: #a78bfa;         /* Violeta — color terciario */
-  --texto: #e8eaf0;           /* Color de texto principal */
-  --apagado: #7a8499;         /* Color de texto secundario/muted */
-  --borde: #1e2d45;           /* Color de bordes de las tarjetas */
-  --exito: #34d399;           /* Verde para respuestas correctas */
-  --peligro: #f87171;         /* Rojo para errores o anomalías */
-  --sombra-tarjeta: 0 4px 32px rgba(0,0,0,0.45); /* Sombra de las tarjetas */
+    --fondo: #0b0f1a;
+    /* Color de fondo principal (azul muy oscuro) */
+    --superficie: #111827;
+    /* Fondo de tarjetas y secciones */
+    --superficie2: #1a2235;
+    /* Fondo secundario más claro */
+    --acento: #f0c040;
+    /* Amarillo dorado — color principal de énfasis */
+    --acento2: #38bdf8;
+    /* Azul claro — color secundario */
+    --acento3: #a78bfa;
+    /* Violeta — color terciario */
+    --texto: #e8eaf0;
+    /* Color de texto principal */
+    --apagado: #7a8499;
+    /* Color de texto secundario/muted */
+    --borde: #1e2d45;
+    /* Color de bordes de las tarjetas */
+    --exito: #34d399;
+    /* Verde para respuestas correctas */
+    --peligro: #f87171;
+    /* Rojo para errores o anomalías */
+    --sombra-tarjeta: 0 4px 32px rgba(0, 0, 0, 0.45);
+    /* Sombra de las tarjetas */
 }
 
 /* Elimina márgenes y paddings por defecto del navegador en todos los elementos */
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 /* Hace que el scroll al hacer clic en un enlace ancla sea animado */
-html { scroll-behavior: smooth; }
+html {
+    scroll-behavior: smooth;
+}
 
 /* Estilos base del cuerpo de la página */
 body {
-  background: var(--fondo);            /* Aplica el color de fondo oscuro */
-  color: var(--texto);                 /* Color de texto claro para contraste */
-  font-family: 'Lora', Georgia, serif; /* Fuente principal con fallbacks */
-  line-height: 1.7;                    /* Espaciado entre líneas para legibilidad */
-  overflow-x: hidden;                  /* Evita scroll horizontal accidental */
+    background: var(--fondo);
+    /* Aplica el color de fondo oscuro */
+    color: var(--texto);
+    /* Color de texto claro para contraste */
+    font-family: 'Lora', Georgia, serif;
+    /* Fuente principal con fallbacks */
+    line-height: 1.7;
+    /* Espaciado entre líneas para legibilidad */
+    overflow-x: hidden;
+    /* Evita scroll horizontal accidental */
 }
 
 /* ── BOTONES ──
    Estilo base compartido por todos los botones del sitio */
 .boton {
-  font-family: 'Syne', sans-serif; /* Fuente de títulos para los botones */
-  font-weight: 700;                /* Negrita */
-  font-size: 0.85rem;              /* Tamaño de texto pequeño */
-  letter-spacing: 0.06em;          /* Espaciado entre letras */
-  text-transform: uppercase;       /* Texto en mayúsculas */
-  padding: 0.8rem 1.8rem;          /* Espacio interior vertical y horizontal */
-  border-radius: 6px;              /* Esquinas redondeadas */
-  border: none;                    /* Sin borde por defecto */
-  cursor: pointer;                 /* Cursor de mano al pasar encima */
-  text-decoration: none;           /* Sin subrayado (para enlaces que parecen botones) */
-  display: inline-block;           /* Para que respete padding y margin */
-  transition: transform 0.15s, box-shadow 0.15s; /* Animación suave al hover */
+    font-family: 'Syne', sans-serif;
+    /* Fuente de títulos para los botones */
+    font-weight: 700;
+    /* Negrita */
+    font-size: 0.85rem;
+    /* Tamaño de texto pequeño */
+    letter-spacing: 0.06em;
+    /* Espaciado entre letras */
+    text-transform: uppercase;
+    /* Texto en mayúsculas */
+    padding: 0.8rem 1.8rem;
+    /* Espacio interior vertical y horizontal */
+    border-radius: 6px;
+    /* Esquinas redondeadas */
+    border: none;
+    /* Sin borde por defecto */
+    cursor: pointer;
+    /* Cursor de mano al pasar encima */
+    text-decoration: none;
+    /* Sin subrayado (para enlaces que parecen botones) */
+    display: inline-block;
+    /* Para que respete padding y margin */
+    transition: transform 0.15s, box-shadow 0.15s;
+    /* Animación suave al hover */
 }
+
 /* Efecto de elevación al pasar el mouse */
-.boton:hover { transform: translateY(-2px); }
+.boton:hover {
+    transform: translateY(-2px);
+}
 
 /* Botón principal — fondo amarillo dorado */
 .boton-principal {
-  background: var(--acento);
-  color: #0b0f1a; /* Texto oscuro para contraste sobre fondo claro */
-  box-shadow: 0 4px 20px rgba(240,192,64,0.3); /* Sombra dorada */
+    background: var(--acento);
+    color: #0b0f1a;
+    /* Texto oscuro para contraste sobre fondo claro */
+    box-shadow: 0 4px 20px rgba(240, 192, 64, 0.3);
+    /* Sombra dorada */
 }
+
 /* Sombra más intensa al hacer hover en botón principal */
-.boton-principal:hover { box-shadow: 0 8px 28px rgba(240,192,64,0.45); }
+.boton-principal:hover {
+    box-shadow: 0 8px 28px rgba(240, 192, 64, 0.45);
+}
 
 /* Botón secundario — transparente con borde */
 .boton-secundario {
-  background: transparent;
-  color: var(--texto);
-  border: 1px solid var(--borde); /* Borde visible */
+    background: transparent;
+    color: var(--texto);
+    border: 1px solid var(--borde);
+    /* Borde visible */
 }
+
 /* Cambia color del borde y texto al hacer hover */
-.boton-secundario:hover { border-color: var(--acento); color: var(--acento); }
+.boton-secundario:hover {
+    border-color: var(--acento);
+    color: var(--acento);
+}
 
 /* ── SECCIONES GENERALES ──
    Centra y limita el ancho del contenido en todas las secciones */
 section {
-  padding: 5rem 2rem;   /* Espaciado interno generoso */
-  max-width: 1100px;    /* Ancho máximo para pantallas grandes */
-  margin: 0 auto;       /* Centra horizontalmente */
+    padding: 5rem 2rem;
+    /* Espaciado interno generoso */
+    max-width: 1100px;
+    /* Ancho máximo para pantallas grandes */
+    margin: 0 auto;
+    /* Centra horizontalmente */
 }
 
 /* Etiqueta pequeña de código que aparece encima de cada título de sección */
 .etiqueta-seccion {
-  font-family: 'DM Mono', monospace; /* Fuente monoespaciada estilo código */
-  font-size: 0.72rem;
-  color: var(--acento);
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  margin-bottom: 0.5rem;
+    font-family: 'DM Mono', monospace;
+    /* Fuente monoespaciada estilo código */
+    font-size: 0.72rem;
+    color: var(--acento);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
 }
 
 /* Estilo para todos los títulos h2 del sitio */
 h2 {
-  font-family: 'Syne', sans-serif;
-  font-weight: 800;
-  font-size: clamp(1.8rem, 4vw, 2.8rem); /* Tamaño fluido según el ancho de pantalla */
-  letter-spacing: -0.02em;
-  margin-bottom: 1rem;
-  line-height: 1.15;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    /* Tamaño fluido según el ancho de pantalla */
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+    line-height: 1.15;
 }
 
 /* Párrafo introductorio de cada sección */
 .intro-seccion {
-  color: var(--apagado);
-  font-size: 1.05rem;
-  max-width: 680px;
-  margin-bottom: 3rem;
+    color: var(--apagado);
+    font-size: 1.05rem;
+    max-width: 680px;
+    margin-bottom: 3rem;
 }
 
 /* ── PIE DE PÁGINA ── */
 footer {
-  border-top: 1px solid var(--borde); /* Línea separadora */
-  text-align: center;
-  padding: 2.5rem 1rem;
-  color: var(--apagado);
-  font-family: 'DM Mono', monospace;
-  font-size: 0.78rem;
-  letter-spacing: 0.05em;
+    border-top: 1px solid var(--borde);
+    /* Línea separadora */
+    text-align: center;
+    padding: 2.5rem 1rem;
+    color: var(--apagado);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.05em;
 }
 
 /* ── ANIMACIÓN DE ENTRADA ──
    Los elementos suben desde abajo y aparecen progresivamente */
 @keyframes subirAparecer {
-  from { opacity: 0; transform: translateY(24px); } /* Comienza invisible y abajo */
-  to   { opacity: 1; transform: translateY(0); }    /* Termina visible en su posición */
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+
+    /* Comienza invisible y abajo */
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Termina visible en su posición */
 }
 
 /* ── RESPONSIVE ──
    Ajustes para pantallas pequeñas (móviles) */
 @media (max-width: 600px) {
-  nav a { display: none; }                             /* Oculta links del nav en móvil */
-  .cuadricula-tarjetas { grid-template-columns: 1fr; } /* Una columna en móvil */
+    nav a {
+        display: none;
+    }
+
+    /* Oculta links del nav en móvil */
+    .cuadricula-tarjetas {
+        grid-template-columns: 1fr;
+    }
+
+    /* Una columna en móvil */
 }
+
 /* ── NAVEGACIÓN ──
    Barra fija en la parte superior que permanece visible al hacer scroll */
 nav {
-  position: fixed;      /* Fija la barra en la pantalla */
-  top: 0; left: 0; right: 0; /* La estira de lado a lado */
-  z-index: 100;         /* La pone por encima de todo el contenido */
-  background: rgba(11,15,26,0.85); /* Fondo semitransparente */
-  backdrop-filter: blur(12px);     /* Efecto de desenfoque detrás del nav */
-  border-bottom: 1px solid var(--borde); /* Línea inferior separadora */
-  padding: 0.75rem 2rem;
-  display: flex;        /* Alinea logo y links en fila */
-  align-items: center;
-  gap: 1.5rem;          /* Espacio entre cada elemento del nav */
+    position: fixed;
+    /* Fija la barra en la pantalla */
+    top: 0;
+    left: 0;
+    right: 0;
+    /* La estira de lado a lado */
+    z-index: 100;
+    /* La pone por encima de todo el contenido */
+    background: rgba(11, 15, 26, 0.85);
+    /* Fondo semitransparente */
+    backdrop-filter: blur(12px);
+    /* Efecto de desenfoque detrás del nav */
+    border-bottom: 1px solid var(--borde);
+    /* Línea inferior separadora */
+    padding: 0.75rem 2rem;
+    display: flex;
+    /* Alinea logo y links en fila */
+    align-items: center;
+    gap: 1.5rem;
+    /* Espacio entre cada elemento del nav */
 }
 
 /* Logo a la izquierda del nav */
 nav .logo {
-  font-family: 'Syne', sans-serif;
-  font-weight: 800;
-  font-size: 1.1rem;
-  color: var(--acento);
-  letter-spacing: -0.02em;
-  margin-right: auto; /* Empuja los links hacia la derecha */
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: var(--acento);
+    letter-spacing: -0.02em;
+    margin-right: auto;
+    /* Empuja los links hacia la derecha */
 }
 
 /* Links de navegación */
 nav a {
-  font-family: 'Syne', sans-serif;
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: var(--apagado);
-  text-decoration: none;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  transition: color 0.2s; /* Transición suave al cambiar de color */
+    font-family: 'Syne', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--apagado);
+    text-decoration: none;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+    /* Transición suave al cambiar de color */
 }
+
 /* Cambia a color acento al pasar el mouse */
-nav a:hover { color: var(--acento); }
+nav a:hover {
+    color: var(--acento);
+}
 
 /* ── PORTADA (HERO) ──
    Sección inicial de pantalla completa */
 .portada {
-  min-height: 100vh;   /* Ocupa al menos toda la altura de la pantalla */
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /* Centra verticalmente */
-  align-items: center;     /* Centra horizontalmente */
-  text-align: center;
-  padding: 6rem 2rem 4rem;
-  /* Dos gradientes radiales decorativos superpuestos */
-  background:
-    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(240,192,64,0.08) 0%, transparent 70%),
-    radial-gradient(ellipse 50% 40% at 80% 80%, rgba(56,189,248,0.06) 0%, transparent 60%);
-  position: relative;
-  overflow: hidden; /* Oculta la cuadrícula que sobresale */
+    min-height: 100vh;
+    /* Ocupa al menos toda la altura de la pantalla */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* Centra verticalmente */
+    align-items: center;
+    /* Centra horizontalmente */
+    text-align: center;
+    padding: 6rem 2rem 4rem;
+    /* Dos gradientes radiales decorativos superpuestos */
+    background:
+        radial-gradient(ellipse 70% 50% at 50% 0%, rgba(240, 192, 64, 0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 40% at 80% 80%, rgba(56, 189, 248, 0.06) 0%, transparent 60%);
+    position: relative;
+    overflow: hidden;
+    /* Oculta la cuadrícula que sobresale */
 }
 
 /* Cuadrícula decorativa de fondo usando pseudo-elemento */
 .portada::before {
-  content: '';
-  position: absolute; inset: 0; /* Cubre toda la portada */
-  background-image:
-    linear-gradient(rgba(240,192,64,0.04) 1px, transparent 1px),   /* Líneas horizontales */
-    linear-gradient(90deg, rgba(240,192,64,0.04) 1px, transparent 1px); /* Líneas verticales */
-  background-size: 48px 48px; /* Tamaño de cada celda de la cuadrícula */
-  pointer-events: none; /* No interfiere con clics del usuario */
+    content: '';
+    position: absolute;
+    inset: 0;
+    /* Cubre toda la portada */
+    background-image:
+        linear-gradient(rgba(240, 192, 64, 0.04) 1px, transparent 1px),
+        /* Líneas horizontales */
+        linear-gradient(90deg, rgba(240, 192, 64, 0.04) 1px, transparent 1px);
+    /* Líneas verticales */
+    background-size: 48px 48px;
+    /* Tamaño de cada celda de la cuadrícula */
+    pointer-events: none;
+    /* No interfiere con clics del usuario */
 }
 
 /* Etiqueta pequeña encima del título principal */
 .portada-etiqueta {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.75rem;
-  color: var(--acento2);
-  letter-spacing: 0.15em;
-  border: 1px solid rgba(56,189,248,0.3); /* Borde azul semitransparente */
-  padding: 0.35rem 1rem;
-  border-radius: 100px; /* Forma de pastilla */
-  margin-bottom: 1.5rem;
-  display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--acento2);
+    letter-spacing: 0.15em;
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    /* Borde azul semitransparente */
+    padding: 0.35rem 1rem;
+    border-radius: 100px;
+    /* Forma de pastilla */
+    margin-bottom: 1.5rem;
+    display: inline-block;
 }
 
 /* Título principal de la portada */
 .portada h1 {
-  font-family: 'Syne', sans-serif;
-  font-weight: 800;
-  font-size: clamp(2.8rem, 7vw, 5.5rem); /* Tamaño fluido: mínimo, ideal, máximo */
-  line-height: 1.05;
-  letter-spacing: -0.03em;
-  margin-bottom: 1rem;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    /* Tamaño fluido: mínimo, ideal, máximo */
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 1rem;
 }
+
 /* Palabra resaltada en el título */
-.portada h1 span { color: var(--acento); }
+.portada h1 span {
+    color: var(--acento);
+}
 
 /* Párrafo descriptivo debajo del título */
 .portada p {
-  font-size: 1.15rem;
-  color: var(--apagado);
-  max-width: 560px;
-  margin: 0 auto 2.5rem;
-  font-style: italic;
+    font-size: 1.15rem;
+    color: var(--apagado);
+    max-width: 560px;
+    margin: 0 auto 2.5rem;
+    font-style: italic;
 }
 
 /* Contenedor de los botones de acción */
 .grupo-botones {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;         /* Apila los botones en móvil si no caben */
-  justify-content: center;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    /* Apila los botones en móvil si no caben */
+    justify-content: center;
 }
 
 /* Aplica la animación de entrada a los elementos de la portada */
-.portada h1, .portada p, .portada .grupo-botones, .portada-etiqueta {
-  animation: subirAparecer 0.6s ease both;
+.portada h1,
+.portada p,
+.portada .grupo-botones,
+.portada-etiqueta {
+    animation: subirAparecer 0.6s ease both;
 }
+
 /* Retrasos escalonados para que los elementos aparezcan uno a uno */
-.portada-etiqueta        { animation-delay: 0.0s; }
-.portada h1              { animation-delay: 0.1s; }
-.portada p               { animation-delay: 0.2s; }
-.portada .grupo-botones  { animation-delay: 0.3s; }
+.portada-etiqueta {
+    animation-delay: 0.0s;
+}
+
+.portada h1 {
+    animation-delay: 0.1s;
+}
+
+.portada p {
+    animation-delay: 0.2s;
+}
+
+.portada .grupo-botones {
+    animation-delay: 0.3s;
+}
+
+/* ── CUADRÍCULA DE TARJETAS ──
+   Grid responsivo que ajusta el número de columnas según el ancho disponible */
+.cuadricula-tarjetas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    /* Mínimo 300px por columna */
+    gap: 1.5rem;
+    /* Separación entre tarjetas */
+}
+
+/* Tarjeta individual */
+.tarjeta {
+    background: var(--superficie);
+    border: 1px solid var(--borde);
+    border-radius: 12px;
+    padding: 1.75rem;
+    box-shadow: var(--sombra-tarjeta);
+    transition: border-color 0.2s, transform 0.2s;
+    /* Animación suave al hover */
+    position: relative;
+    /* Necesario para el pseudo-elemento de la línea superior */
+    overflow: hidden;
+    /* Oculta cualquier cosa que salga de los bordes redondeados */
+}
+
+/* Línea de color en la parte superior de cada tarjeta
+   El color se define con --acento-tarjeta en cada tarjeta individualmente */
+.tarjeta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--acento-tarjeta, var(--acento));
+    /* Usa acento-tarjeta o amarillo por defecto */
+}
+
+/* Al hacer hover: resalta el borde y eleva la tarjeta */
+.tarjeta:hover {
+    border-color: var(--acento-tarjeta, var(--acento));
+    transform: translateY(-3px);
+    /* Efecto de levitación */
+}
+
+/* Número o etiqueta pequeña encima del título de la tarjeta */
+.tarjeta-numero {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--apagado);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+}
+
+/* Título de la tarjeta */
+.tarjeta h3 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.15rem;
+    margin-bottom: 0.75rem;
+}
+
+/* Descripción de la tarjeta */
+.tarjeta p {
+    font-size: 0.93rem;
+    color: var(--apagado);
+    line-height: 1.6;
+}
