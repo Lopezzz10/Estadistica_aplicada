@@ -1,0 +1,134 @@
+/* Importa las fuentes desde Google Fonts:
+   Syne para títulos, DM Mono para código, Lora para texto normal */
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=Lora:ital,wght@0,400;0,500;1,400&display=swap');
+
+/* ── VARIABLES GLOBALES ──
+   Define los colores y sombras reutilizables en todo el sitio.
+   Al cambiar un valor aquí se actualiza en toda la página automáticamente. */
+:root {
+  --fondo: #0b0f1a;           /* Color de fondo principal (azul muy oscuro) */
+  --superficie: #111827;      /* Fondo de tarjetas y secciones */
+  --superficie2: #1a2235;     /* Fondo secundario más claro */
+  --acento: #f0c040;          /* Amarillo dorado — color principal de énfasis */
+  --acento2: #38bdf8;         /* Azul claro — color secundario */
+  --acento3: #a78bfa;         /* Violeta — color terciario */
+  --texto: #e8eaf0;           /* Color de texto principal */
+  --apagado: #7a8499;         /* Color de texto secundario/muted */
+  --borde: #1e2d45;           /* Color de bordes de las tarjetas */
+  --exito: #34d399;           /* Verde para respuestas correctas */
+  --peligro: #f87171;         /* Rojo para errores o anomalías */
+  --sombra-tarjeta: 0 4px 32px rgba(0,0,0,0.45); /* Sombra de las tarjetas */
+}
+
+/* Elimina márgenes y paddings por defecto del navegador en todos los elementos */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* Hace que el scroll al hacer clic en un enlace ancla sea animado */
+html { scroll-behavior: smooth; }
+
+/* Estilos base del cuerpo de la página */
+body {
+  background: var(--fondo);            /* Aplica el color de fondo oscuro */
+  color: var(--texto);                 /* Color de texto claro para contraste */
+  font-family: 'Lora', Georgia, serif; /* Fuente principal con fallbacks */
+  line-height: 1.7;                    /* Espaciado entre líneas para legibilidad */
+  overflow-x: hidden;                  /* Evita scroll horizontal accidental */
+}
+
+/* ── BOTONES ──
+   Estilo base compartido por todos los botones del sitio */
+.boton {
+  font-family: 'Syne', sans-serif; /* Fuente de títulos para los botones */
+  font-weight: 700;                /* Negrita */
+  font-size: 0.85rem;              /* Tamaño de texto pequeño */
+  letter-spacing: 0.06em;          /* Espaciado entre letras */
+  text-transform: uppercase;       /* Texto en mayúsculas */
+  padding: 0.8rem 1.8rem;          /* Espacio interior vertical y horizontal */
+  border-radius: 6px;              /* Esquinas redondeadas */
+  border: none;                    /* Sin borde por defecto */
+  cursor: pointer;                 /* Cursor de mano al pasar encima */
+  text-decoration: none;           /* Sin subrayado (para enlaces que parecen botones) */
+  display: inline-block;           /* Para que respete padding y margin */
+  transition: transform 0.15s, box-shadow 0.15s; /* Animación suave al hover */
+}
+/* Efecto de elevación al pasar el mouse */
+.boton:hover { transform: translateY(-2px); }
+
+/* Botón principal — fondo amarillo dorado */
+.boton-principal {
+  background: var(--acento);
+  color: #0b0f1a; /* Texto oscuro para contraste sobre fondo claro */
+  box-shadow: 0 4px 20px rgba(240,192,64,0.3); /* Sombra dorada */
+}
+/* Sombra más intensa al hacer hover en botón principal */
+.boton-principal:hover { box-shadow: 0 8px 28px rgba(240,192,64,0.45); }
+
+/* Botón secundario — transparente con borde */
+.boton-secundario {
+  background: transparent;
+  color: var(--texto);
+  border: 1px solid var(--borde); /* Borde visible */
+}
+/* Cambia color del borde y texto al hacer hover */
+.boton-secundario:hover { border-color: var(--acento); color: var(--acento); }
+
+/* ── SECCIONES GENERALES ──
+   Centra y limita el ancho del contenido en todas las secciones */
+section {
+  padding: 5rem 2rem;   /* Espaciado interno generoso */
+  max-width: 1100px;    /* Ancho máximo para pantallas grandes */
+  margin: 0 auto;       /* Centra horizontalmente */
+}
+
+/* Etiqueta pequeña de código que aparece encima de cada título de sección */
+.etiqueta-seccion {
+  font-family: 'DM Mono', monospace; /* Fuente monoespaciada estilo código */
+  font-size: 0.72rem;
+  color: var(--acento);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+/* Estilo para todos los títulos h2 del sitio */
+h2 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.8rem, 4vw, 2.8rem); /* Tamaño fluido según el ancho de pantalla */
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+  line-height: 1.15;
+}
+
+/* Párrafo introductorio de cada sección */
+.intro-seccion {
+  color: var(--apagado);
+  font-size: 1.05rem;
+  max-width: 680px;
+  margin-bottom: 3rem;
+}
+
+/* ── PIE DE PÁGINA ── */
+footer {
+  border-top: 1px solid var(--borde); /* Línea separadora */
+  text-align: center;
+  padding: 2.5rem 1rem;
+  color: var(--apagado);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+}
+
+/* ── ANIMACIÓN DE ENTRADA ──
+   Los elementos suben desde abajo y aparecen progresivamente */
+@keyframes subirAparecer {
+  from { opacity: 0; transform: translateY(24px); } /* Comienza invisible y abajo */
+  to   { opacity: 1; transform: translateY(0); }    /* Termina visible en su posición */
+}
+
+/* ── RESPONSIVE ──
+   Ajustes para pantallas pequeñas (móviles) */
+@media (max-width: 600px) {
+  nav a { display: none; }                             /* Oculta links del nav en móvil */
+  .cuadricula-tarjetas { grid-template-columns: 1fr; } /* Una columna en móvil */
+}
