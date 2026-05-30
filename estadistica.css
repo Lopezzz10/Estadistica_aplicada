@@ -132,3 +132,122 @@ footer {
   nav a { display: none; }                             /* Oculta links del nav en móvil */
   .cuadricula-tarjetas { grid-template-columns: 1fr; } /* Una columna en móvil */
 }
+/* ── NAVEGACIÓN ──
+   Barra fija en la parte superior que permanece visible al hacer scroll */
+nav {
+  position: fixed;      /* Fija la barra en la pantalla */
+  top: 0; left: 0; right: 0; /* La estira de lado a lado */
+  z-index: 100;         /* La pone por encima de todo el contenido */
+  background: rgba(11,15,26,0.85); /* Fondo semitransparente */
+  backdrop-filter: blur(12px);     /* Efecto de desenfoque detrás del nav */
+  border-bottom: 1px solid var(--borde); /* Línea inferior separadora */
+  padding: 0.75rem 2rem;
+  display: flex;        /* Alinea logo y links en fila */
+  align-items: center;
+  gap: 1.5rem;          /* Espacio entre cada elemento del nav */
+}
+
+/* Logo a la izquierda del nav */
+nav .logo {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: var(--acento);
+  letter-spacing: -0.02em;
+  margin-right: auto; /* Empuja los links hacia la derecha */
+}
+
+/* Links de navegación */
+nav a {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--apagado);
+  text-decoration: none;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: color 0.2s; /* Transición suave al cambiar de color */
+}
+/* Cambia a color acento al pasar el mouse */
+nav a:hover { color: var(--acento); }
+
+/* ── PORTADA (HERO) ──
+   Sección inicial de pantalla completa */
+.portada {
+  min-height: 100vh;   /* Ocupa al menos toda la altura de la pantalla */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centra verticalmente */
+  align-items: center;     /* Centra horizontalmente */
+  text-align: center;
+  padding: 6rem 2rem 4rem;
+  /* Dos gradientes radiales decorativos superpuestos */
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(240,192,64,0.08) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 40% at 80% 80%, rgba(56,189,248,0.06) 0%, transparent 60%);
+  position: relative;
+  overflow: hidden; /* Oculta la cuadrícula que sobresale */
+}
+
+/* Cuadrícula decorativa de fondo usando pseudo-elemento */
+.portada::before {
+  content: '';
+  position: absolute; inset: 0; /* Cubre toda la portada */
+  background-image:
+    linear-gradient(rgba(240,192,64,0.04) 1px, transparent 1px),   /* Líneas horizontales */
+    linear-gradient(90deg, rgba(240,192,64,0.04) 1px, transparent 1px); /* Líneas verticales */
+  background-size: 48px 48px; /* Tamaño de cada celda de la cuadrícula */
+  pointer-events: none; /* No interfiere con clics del usuario */
+}
+
+/* Etiqueta pequeña encima del título principal */
+.portada-etiqueta {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--acento2);
+  letter-spacing: 0.15em;
+  border: 1px solid rgba(56,189,248,0.3); /* Borde azul semitransparente */
+  padding: 0.35rem 1rem;
+  border-radius: 100px; /* Forma de pastilla */
+  margin-bottom: 1.5rem;
+  display: inline-block;
+}
+
+/* Título principal de la portada */
+.portada h1 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: clamp(2.8rem, 7vw, 5.5rem); /* Tamaño fluido: mínimo, ideal, máximo */
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin-bottom: 1rem;
+}
+/* Palabra resaltada en el título */
+.portada h1 span { color: var(--acento); }
+
+/* Párrafo descriptivo debajo del título */
+.portada p {
+  font-size: 1.15rem;
+  color: var(--apagado);
+  max-width: 560px;
+  margin: 0 auto 2.5rem;
+  font-style: italic;
+}
+
+/* Contenedor de los botones de acción */
+.grupo-botones {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;         /* Apila los botones en móvil si no caben */
+  justify-content: center;
+}
+
+/* Aplica la animación de entrada a los elementos de la portada */
+.portada h1, .portada p, .portada .grupo-botones, .portada-etiqueta {
+  animation: subirAparecer 0.6s ease both;
+}
+/* Retrasos escalonados para que los elementos aparezcan uno a uno */
+.portada-etiqueta        { animation-delay: 0.0s; }
+.portada h1              { animation-delay: 0.1s; }
+.portada p               { animation-delay: 0.2s; }
+.portada .grupo-botones  { animation-delay: 0.3s; }
