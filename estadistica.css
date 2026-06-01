@@ -609,3 +609,190 @@ Envuelve cada canvas de Chart.js con fondo y padding */
     background: rgba(248, 113, 113, 0.08);
     /* Fondo rojo muy tenue */
 }
+
+/* ── ESTILOS DEL QUIZ ── */
+/* Fondo diferente para distinguir la sección de evaluación */
+#quiz {
+    background: var(--superficie);
+    border-top: 1px solid var(--borde);
+}
+
+#quiz section {
+    max-width: 760px;
+}
+
+/* Más angosto para mejor lectura */
+/* Barra de progreso: 5 segmentos, uno por pregunta */
+.progreso-quiz {
+    display: flex;
+    gap: 0.4rem;
+    margin-bottom: 2rem;
+}
+
+/* Cada segmento de la barra de progreso */
+.punto-quiz {
+    height: 4px;
+    /* Línea delgada */
+    flex: 1;
+    /* Todos tienen el mismo ancho */
+    border-radius: 2px;
+    background: var(--borde);
+    /* Gris: no respondido */
+    transition: background 0.3s;
+    /* Transición suave al cambiar de color */
+}
+
+.punto-quiz.completado {
+    background: var(--acento);
+}
+
+/* Dorado: respondido */
+.punto-quiz.activo {
+    background: var(--acento2);
+}
+
+/* Azul: pregunta actual */
+/* Tarjeta que contiene la pregunta y sus opciones */
+.tarjeta-pregunta {
+    background: var(--superficie2);
+    border: 1px solid var(--borde);
+    border-radius: 14px;
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Texto de la pregunta */
+.texto-pregunta {
+    font-size: 1.05rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    line-height: 1.55;
+}
+
+/* Lista de botones de opciones en columna */
+.lista-opciones {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+/* Botón individual de opción de respuesta */
+.boton-opcion {
+    background: var(--superficie);
+    border: 1px solid var(--borde);
+    border-radius: 8px;
+    padding: 0.85rem 1.2rem;
+    text-align: left;
+    cursor: pointer;
+    font-family: 'Lora', serif;
+    font-size: 0.95rem;
+    color: var(--texto);
+    transition: border-color 0.2s, background 0.2s;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+}
+
+/* Efecto hover solo cuando el botón no está deshabilitado */
+.boton-opcion:hover:not(:disabled) {
+    border-color: var(--acento2);
+    background:
+        rgba(56, 189, 248, 0.05);
+}
+
+/* Letra identificadora de la opción (A, B, C, D) */
+.boton-opcion .letra-opcion {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--apagado);
+    min-width: 1.2rem;
+    padding-top: 0.1rem;
+}
+
+/* Estado: opción correcta → borde y fondo verde */
+.boton-opcion.correcto {
+    border-color: var(--exito);
+    background: rgba(52, 211, 153, 0.08);
+}
+
+/* Estado: opción incorrecta → borde y fondo rojo */
+.boton-opcion.incorrecto {
+    border-color: var(--peligro);
+    background: rgba(248, 113, 113, 0.08);
+}
+
+/* Cursor normal cuando ya está respondida */
+.boton-opcion:disabled {
+    cursor: default;
+}
+
+/* Bloque de retroalimentación debajo de las opciones */
+.retroalimentacion {
+    padding: 0.9rem 1.1rem;
+    border-radius: 8px;
+    font-size: 0.92rem;
+    margin-top: 1rem;
+    display: none;
+    /* Oculto por defecto, JS lo muestra al responder */
+}
+
+.retroalimentacion.visible {
+    display: block;
+}
+
+.retroalimentacion.bien {
+    background: rgba(52, 211, 153, 0.1);
+    border: 1px solid var(--exito);
+    color: var(- -exito);
+}
+
+/* Verde: correcto */
+.retroalimentacion.mal {
+    background: rgba(248, 113, 113, 0.1);
+    border: 1px solid var(--peligro);
+    color:
+        var(--peligro);
+}
+
+/* Rojo: incorrecto */
+/* Fila con puntaje a la izquierda y botón siguiente a la derecha */
+.navegacion-quiz {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top:
+        1rem;
+}
+
+/* Tarjeta final con el puntaje total */
+.tarjeta-puntaje {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: var(--superficie2);
+    border: 1px solid var(--borde);
+    border-radius: 16px;
+    display: none;
+    /* Oculta hasta que termina el quiz */
+}
+
+.tarjeta-puntaje.visible {
+    display: block;
+}
+
+/* JS agrega esta clase al finalizar */
+/* Número grande con el puntaje obtenido (ej. "4/5") */
+.numero-puntaje {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 5rem;
+    line-height: 1;
+    color: var(--acento);
+    margin-bottom: 0.5rem;
+}
+
+/* Mensaje de resultado debajo del número */
+.etiqueta-puntaje {
+    color: var(--apagado);
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+}

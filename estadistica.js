@@ -94,4 +94,39 @@ function crearGraficoBarras() {
     });
 }
 
-
+/* ── BANCO DE PREGUNTAS ──
+ Array con los 5 objetos de pregunta del quiz.
+ Cada objeto tiene: texto de la pregunta, 4 opciones,
+ índice de la correcta (0-3) y la explicación para el feedback. */
+var preguntas = [
+    {
+        pregunta: "¿Cuál es la media aritmética del conjunto: 10, 20, 30, 40?",
+        opciones: ["20", "25", "30", "35"],
+        correcta: 1, /* Índice 1 = "25" → (10+20+30+40)/4 = 25 */
+        explicacion: "Suma = 100, n = 4 → media = 100/4 = 25."
+    },
+    {
+        pregunta: "¿Cuál es la mediana del conjunto ordenado: 3, 7, 9, 15, 21?",
+        opciones: ["7", "9", "15", "11"],
+        correcta: 1, /* Índice 1 = "9" es el valor central de 5 datos */
+        explicacion: "5 datos (impar) → el valor central es el 3ro → 9."
+    },
+    {
+        pregunta: "En el conjunto [4, 8, 8, 10, 12], ¿cuál es la moda?",
+        opciones: ["4", "10", "8", "12"],
+        correcta: 2, /* Índice 2 = "8" aparece 2 veces */
+        explicacion: "El 8 aparece 2 veces, más que cualquier otro valor."
+    },
+    {
+        pregunta: "¿Qué porcentaje representa 25 sobre un total de 200?",
+        opciones: ["10%", "12.5%", "15%", "25%"],
+        correcta: 1, /* Índice 1 = "12.5%" → (25/200)×100 */
+        explicacion: "(25/200) × 100 = 12.5%"
+    },
+    {
+        pregunta: "Dados los datos [5, 6, 5, 200, 7, 6], ¿cuál valor es probablemente una ANOMALÍA?",
+        opciones: ["5", "6", "7", "200"],
+        correcta: 3, /* Índice 3 = "200" está muy lejos del promedio */
+        explicacion: "El 200 se aleja drásticamente del promedio (~38) y supera el umbral estadístico."
+    }
+];

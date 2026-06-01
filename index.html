@@ -279,11 +279,36 @@
                     superior — posible falla o dato erróneo.</p>
             </div>
         </div>
-
-
     </section>
 
-    <!-- ── PIE DE PÁGINA ── -->
+<!-- ── SECCIÓN QUIZ ──
+ Contenedor separado con fondo diferente para destacar la evaluación -->
+    <div id="quiz"> <!-- id="quiz" para la navegación del menú -->
+        <section>
+            <div class="etiqueta-seccion">// 03 · Evaluación</div>
+            <h2>Test de 5 preguntas</h2>
+            <p class="intro-seccion">Pon a prueba tu comprensión. Selecciona la opción correcta en cada
+                pregunta.</p>
+            <!-- Barra de progreso: 5 segmentos, uno por pregunta -->
+            <div class="progreso-quiz" id="progresoQuiz">
+                <div class="punto-quiz activo" id="punto0"></div> <!-- Pregunta 1: activa al inicio -->
+                <div class="punto-quiz" id="punto1"></div> <!-- Pregunta 2 -->
+                <div class="punto-quiz" id="punto2"></div> <!-- Pregunta 3 -->
+                <div class="punto-quiz" id="punto3"></div> <!-- Pregunta 4 -->
+                <div class="punto-quiz" id="punto4"></div> <!-- Pregunta 5 -->
+            </div>
+            <!-- El JS inyecta dinámicamente la tarjeta de cada pregunta aquí -->
+            <div id="contenedorQuiz"></div>
+            <!-- Tarjeta de puntaje final — oculta hasta terminar el quiz -->
+            <div class="tarjeta-puntaje" id="tarjetaPuntaje">
+                <div class="numero-puntaje" id="numeroPuntaje">0/5</div> <!-- JS actualiza este número -->
+                <div class="etiqueta-puntaje" id="etiquetaPuntaje">Calculando resultado…</div> <!-- JS pone elmensaje -->
+                <button class="boton boton-principal" onclick="reiniciarQuiz()" style="margin-top:1.5rem;">Intentar de
+                    nuevo</button>
+            </div>
+        </section>
+    </div>
+
     <footer>
         Estadística Aplicada · Matemática 1 &nbsp;|&nbsp; Material de Estudio &nbsp;|&nbsp; Desarrollado con IA como
         apoyo
