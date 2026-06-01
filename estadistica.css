@@ -574,3 +574,28 @@ nav a:hover {
     font-weight: 700;
     font-size: 1.5rem;
 }
+
+/* ── CONTENEDOR DE GRÁFICO ──
+Envuelve cada canvas de Chart.js con fondo y padding */
+.contenedor-grafico {
+    background: var(--superficie);
+    border: 1px solid var(--borde);
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 2rem 0;
+}
+
+/* Título del contenedor de gráfico */
+.contenedor-grafico h4 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 1.25rem;
+    color: var(--acento3);
+    /* Violeta para distinguirlo de otros títulos */
+}
+
+/* Limita la altura del canvas para que no sea demasiado grande */
+.contenedor-grafico canvas {
+    max-height: 300px;
+}
