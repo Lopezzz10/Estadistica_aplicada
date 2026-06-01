@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <!-- Página responsiva en móviles -->
     <title>Estadística Aplicada — Guía de Estudio</title> <!-- Título en la pestaña del navegador -->
     <link rel="stylesheet" href="estadistica.css" /> <!-- Enlaza el archivo de estilos -->
+
 </head>
 
 <body>
@@ -187,6 +188,34 @@
                 <div class="fila-resultado"><span>Oeste</span><span>40%</span></div> <!-- 400/1000 -->
             </div>
         </div>
+
+        <!-- ── TEMA 6: ANÁLISIS DE TENDENCIAS ── -->
+        <div class="seccion-tema">
+            <div class="encabezado-tema">
+                <span class="etiqueta-tema">TEMA 6</span>
+                <h3>Análisis de Tendencias</h3>
+            </div>
+            <p>Comparar la <strong>primera mitad</strong> con la <strong>segunda mitad</strong> de una
+                serie permite saber si los valores suben, bajan o se mantienen.</p>
+            <!-- Fórmula de comparación de promedios por mitades -->
+            <div class="formula">
+                promedio_primera_mitad vs promedio_segunda_mitad<br />
+                → si 2da &gt; 1ra: tendencia ASCENDENTE<br />
+                → si 2da &lt; 1ra: tendencia DESCENDENTE<br />
+                → si son ≈ iguales: tendencia ESTABLE
+            </div>
+            <!-- El canvas lo llena Chart.js usando el id como referencia -->
+            <div class="contenedor-grafico">
+                <h4> Gráfico de tendencia — Ventas mensuales</h4>
+                <canvas id="graficoTendencia"></canvas> <!-- JS busca este id para dibujar -->
+                <p style="margin-top:1rem;font-size:0.88rem;color:var(--apagado);">
+                    Primera mitad: <strong style="color:var(--acento2);">42</strong> ·
+                    Segunda mitad: <strong style="color:var(--acento);">68</strong> →
+                    Tendencia <strong style="color:var(--exito);">ASCENDENTE</strong>
+                </p>
+            </div>
+        </div>
+
     </section>
 
     <!-- ── PIE DE PÁGINA ── -->
@@ -194,6 +223,8 @@
         Estadística Aplicada · Matemática 1 &nbsp;|&nbsp; Material de Estudio &nbsp;|&nbsp; Desarrollado con IA como
         apoyo
     </footer>
+
+
 </body>
 
 <!-- Librería Chart.js desde CDN para crear gráficos interactivos -->
