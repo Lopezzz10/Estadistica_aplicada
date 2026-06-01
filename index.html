@@ -229,7 +229,8 @@
                 <h4> Gráfico de barras — Calificaciones</h4>
                 <canvas id="graficoBarras"></canvas> <!-- JS busca este id para dibujar -->
                 <!-- Bloque de interpretación automática simulada -->
-                <div style="margin-top:1.25rem;padding:0.9rem 1.1rem;background:var(--fondo);border:1px solid var(--borde);border-radius:8px;font-size:0.88rem;color:var(--apagado);">
+                <div
+                    style="margin-top:1.25rem;padding:0.9rem 1.1rem;background:var(--fondo);border:1px solid var(--borde);border-radius:8px;font-size:0.88rem;color:var(--apagado);">
                     <em>
                         "El pico más alto: <strong style="color:var(--acento);">dato #5 (95)</strong>.
                         El más bajo: <strong style="color:var(--peligro);">dato #1 (72)</strong>.
@@ -238,6 +239,47 @@
                 </div>
             </div>
         </div>
+
+        <!-- ── TEMAS 8 & 9: DETECCIÓN DE ANOMALÍAS ── -->
+        <div class="seccion-tema">
+            <div class="encabezado-tema">
+                <span class="etiqueta-tema">TEMA 8 & 9</span>
+                <h3>Análisis de Datos y Detección de Anomalías</h3>
+            </div>
+            <!-- Definición y regla de las 2 desviaciones estándar -->
+            <p>Una <strong>anomalía</strong> es un dato que se aleja excesivamente del promedio. Regla: si
+                supera <strong>2× la desviación estándar</strong>, se marca como atípico.</p>
+            <!-- Fórmula del umbral de detección -->
+            <div class="formula">
+                Umbral = promedio ± 2σ<br />
+                Si dato &gt; umbral_superior OR dato &lt; umbral_inferior → ANOMALÍA
+            </div>
+            <div class="bloque-ejemplo">
+                <h4> Ejemplo: Tiempo de respuesta (ms)</h4>
+                <!-- El 95 se muestra en rojo porque es la anomalía -->
+                <p style="font-size:0.93rem;color:var(--apagado);margin-bottom:1rem;">
+                    Datos: 10, 12, 11, 14, <strong style="color:var(--peligro);">95</strong>, 12 → Promedio ≈ 25.6
+                </p>
+                <!-- Pastillas: la anomalía lleva su clase especial -->
+                <div class="pastillas-datos">
+                    <span class="pastilla">10</span>
+                    <span class="pastilla">12</span>
+                    <span class="pastilla">11</span>
+                    <span class="pastilla">14</span>
+                    <span class="pastilla anomalia">95 ← ANOMALÍA</span> <!-- Dato atípico en rojo -->
+                    <span class="pastilla">12</span>
+                </div>
+                <div class="fila-resultado"><span>Promedio</span><span>25.67</span></div>
+                <div class="fila-resultado"><span>Desviación estándar (σ)</span><span>32.6</span></div>
+                <div class="fila-resultado"><span>Umbral superior (μ + 2σ)</span><span>90.87</span></div>
+                <!-- El 95 supera el umbral de 90.87 → es anomalía -->
+                <div class="fila-resultado"><span>Dato 95</span><span style="color:var(--peligro);">⚠
+                        ANOMALÍA</span></div>
+                <p style="margin-top:1rem;font-size:0.9rem;color:var(--apagado);">El valor 95 supera el umbral
+                    superior — posible falla o dato erróneo.</p>
+            </div>
+        </div>
+
 
     </section>
 

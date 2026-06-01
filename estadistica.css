@@ -599,3 +599,13 @@ Envuelve cada canvas de Chart.js con fondo y padding */
 .contenedor-grafico canvas {
     max-height: 300px;
 }
+
+/* Pastilla de anomalía — resalta en rojo el dato atípico */
+.pastilla.anomalia {
+    border-color: var(--peligro);
+    /* Borde rojo */
+    color: var(--peligro);
+    /* Texto rojo */
+    background: rgba(248, 113, 113, 0.08);
+    /* Fondo rojo muy tenue */
+}
