@@ -46,5 +46,52 @@ function crearGraficoTendencia() {
         }
     });
 }
-document.addEventListener('DOMContentLoaded', crearGraficoTendencia);
+
+/* ── FUNCIÓN: crearGraficoBarras ──
+ Dibuja un gráfico de barras con las calificaciones de 6 alumnos.
+ La barra más baja es roja y la más alta es dorada para destacar visualmente.
+ Usa el canvas con id="graficoBarras" definido en el HTML.
+ Se llama una sola vez al cargar la página. */
+function crearGraficoBarras() {
+    /* Busca el canvas en el HTML */
+    var canvas = document.getElementById('graficoBarras');
+    new Chart(canvas, {
+        type: 'bar', /* Tipo de gráfico: barras verticales */
+        data: {
+            /* Etiquetas del eje X */
+            labels: ['Dato 1', 'Dato 2', 'Dato 3', 'Dato 4', 'Dato 5', 'Dato 6'],
+            datasets: [{
+                label: 'Calificación',
+                data: [72, 85, 90, 78, 95, 88], /* Calificaciones de cada alumno */
+                /* Colores individuales por barra:
+                Dato 1 (72) → rojo porque es el mínimo
+                Dato 5 (95) → dorado porque es el máximo
+                El resto → azul neutro */
+                backgroundColor: [
+                    'rgba(248,113,113,0.7)', /* Dato 1 — rojo (mínimo) */
+                    'rgba(56,189,248,0.7)', /* Dato 2 — azul */
+                    'rgba(56,189,248,0.7)', /* Dato 3 — azul */
+                    'rgba(56,189,248,0.7)', /* Dato 4 — azul */
+                    'rgba(240,192,64,0.9)', /* Dato 5 — dorado (máximo) */
+                    'rgba(56,189,248,0.7)' /* Dato 6 — azul */
+                ],
+                borderRadius: 6 /* Redondea las esquinas superiores de las barras */
+            }]
+        },
+        options: {
+            plugins: {
+                legend: { display: false } /* Oculta la leyenda */
+            },
+            scales: {
+                x: { grid: { color: '#1e2d45' } },
+                y: {
+                    grid: { color: '#1e2d45' },
+                    beginAtZero: true, /* El eje Y empieza en 0 */
+                    max: 100 /* Límite máximo del eje Y */
+                }
+            }
+        }
+    });
+}
+
 
