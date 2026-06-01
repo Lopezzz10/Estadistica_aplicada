@@ -7,11 +7,6 @@ Chart.defaults.color = '#7a8499';
 Chart.defaults.font.family = "'DM Mono', monospace";
 
 /* ── FUNCIÓN: crearGraficoTendencia ──
-Dibuja un gráfico de línea que muestra la evolución de ventas mes a mes.
-Usa el canvas con id="graficoTendencia" definido en el HTML.
-Se llama una sola vez al cargar la página. */
-
-/* ── FUNCIÓN: crearGraficoTendencia ──
  Dibuja un gráfico de línea que muestra la evolución de ventas mes a mes.
  Usa el canvas con id="graficoTendencia" definido en el HTML.
  Se llama una sola vez al cargar la página. */
@@ -166,8 +161,8 @@ responde */
         '<div class="navegacion-quiz">' +
         /* Puntaje actual a la izquierda */
         '<span style="font-family:\'DM Mono\',monospace;font-size:0.8rem;color:var(--apagado) ">Puntuación: ' + puntaje + '/' + indice + '</span>' +
-    /* Botón siguiente oculto — JS lo muestra cuando el usuario responde */
-    '<button class="boton boton-secundario" id="btnSiguiente" onclick="siguientePregunta()"style = "display:none;" > ' + textoBtnSig + '</button > ' +'</div>';
+        /* Botón siguiente oculto — JS lo muestra cuando el usuario responde */
+        '<button class="boton boton-secundario" id="btnSiguiente" onclick="siguientePregunta()"style = "display:none;" > ' + textoBtnSig + '</button > ' + '</div>';
 }
 /* ── FUNCIÓN: elegirOpcion ──
  Se ejecuta cuando el usuario hace clic en una opción.
@@ -244,11 +239,12 @@ function mostrarPuntajeFinal() {
     document.getElementById('numeroPuntaje').textContent = puntaje + '/5';
     /* Mensajes según puntaje: índice 0 = 0 correctas, índice 4 = 5 correctas */
     var mensajes = [
-        "Sigue estudiando, ¡tú puedes!", /* 0/5 */
-        "Vas por buen camino.", /* 1/5 */
-        "Bien hecho, ya tienes bases sólidas.", /* 2/5 */
-        "¡Muy bien! Casi perfecto.", /* 3/5 y 4/5 */
-        "¡Excelente! Dominas el tema." /* 5/5 */
+        "Sigue estudiando, ¡tú puedes!",   // 0/5
+        "Vas por buen camino.",              // 1/5
+        "Bien hecho, ya tienes bases.",      // 2/5
+        "¡Muy bien! Vas bien encaminado.",   // 3/5
+        "¡Casi perfecto!",                   // 4/5
+        "¡Excelente! Dominas el tema."       // 5/5
     ];
     /* Usa el puntaje como índice para seleccionar el mensaje correspondiente */
     document.getElementById('etiquetaPuntaje').textContent = mensajes[puntaje];
