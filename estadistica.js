@@ -608,6 +608,13 @@ function reiniciarQuiz() {
 /* ── INICIO ──
  Se ejecuta automáticamente al cargar la página gracias al atributo "defer" en el script.
  Crea los dos gráficos y muestra la primera pregunta del quiz. */
-crearGraficoTendencia(); /* Dibuja el gráfico de línea del tema 6 */
-crearGraficoBarras(); /* Dibuja el gráfico de barras del tema 7 */
-mostrarPregunta(0); /* Renderiza la primera pregunta del quiz */
+crearGraficoTendencia();
+crearGraficoBarras();
+mostrarPregunta(0);
+renderizarIndicadores();
+renderizarTablaFrecuencias();
+renderizarAlertas();
+crearGraficoLineas100();
+crearHistograma();
+crearGraficoCircular();
+crearGraficoBarrasNota();
