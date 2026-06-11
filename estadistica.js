@@ -135,6 +135,25 @@ function renderizarIndicadores() {
     document.getElementById('ind-desviacion').textContent = desviacion.toFixed(2);
 }
 
+/* ── FUNCIÓN: renderizarTablaFrecuencias ──
+ Genera dinámicamente las filas de la tabla HTML
+ con los intervalos y sus frecuencias */
+function renderizarTablaFrecuencias() {
+    var intervalos = calcularFrecuencias(calificaciones);
+    var cuerpo = document.getElementById('cuerpo-tabla-frecuencias');
+    var html = '';
+    for (var i = 0; i < intervalos.length; i++) {
+        html +=
+            '<tr>' +
+            '<td>' + intervalos[i].etiqueta + '</td>' +
+            '<td>' + intervalos[i].absoluta + '</td>' +
+            '<td>' + intervalos[i].relativa + '</td>' +
+            '<td>' + intervalos[i].porcentual + '</td>' +
+            '</tr>';
+    }
+    cuerpo.innerHTML = html;
+}
+
 /* ── CONFIGURACIÓN GLOBAL DE CHART.JS ──
 Estos valores se aplican a todos los gráficos del sitio automáticamente.
 Se definen una sola vez aquí para no repetirlos en cada gráfico. */
