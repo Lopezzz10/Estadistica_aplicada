@@ -1,3 +1,19 @@
+/* ── DATOS: 100 CALIFICACIONES ESTUDIANTILES ──
+   Notas del 0 al 10 con distribución realista:
+   mayoría entre 6 y 9, algunos reprobados, pocos perfectos */
+var calificaciones = [
+    7.5, 8.0, 6.5, 9.0, 5.5, 7.0, 8.5, 6.0, 9.5, 4.0,
+    7.0, 8.0, 6.5, 7.5, 5.0, 8.0, 9.0, 6.0, 7.0, 8.5,
+    3.5, 7.5, 8.0, 6.5, 9.0, 7.0, 5.5, 8.0, 6.5, 7.5,
+    9.5, 6.0, 7.0, 8.5, 5.0, 7.5, 8.0, 6.0, 9.0, 7.0,
+    4.5, 8.0, 7.5, 6.5, 9.0, 5.5, 7.0, 8.0, 6.0, 7.5,
+    8.5, 5.0, 7.0, 9.0, 6.5, 8.0, 7.5, 6.0, 9.5, 4.0,
+    7.0, 8.0, 5.5, 7.5, 8.5, 6.5, 9.0, 7.0, 6.0, 8.0,
+    3.0, 7.5, 8.0, 6.5, 9.0, 5.0, 7.0, 8.5, 6.0, 7.5,
+    10.0, 6.5, 7.0, 8.0, 5.5, 7.5, 9.0, 6.0, 8.0, 7.0,
+    2.0, 8.5, 7.5, 6.5, 9.0, 5.0, 7.0, 8.0, 6.5, 7.5
+];
+
 /* ── CONFIGURACIÓN GLOBAL DE CHART.JS ──
 Estos valores se aplican a todos los gráficos del sitio automáticamente.
 Se definen una sola vez aquí para no repetirlos en cada gráfico. */
