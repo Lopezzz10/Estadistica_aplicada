@@ -27,7 +27,7 @@ function calcularMedia(datos) {
 /* ── FUNCIÓN: calcularMediana ──
    Ordena los datos y obtiene el valor central */
 function calcularMediana(datos) {
-    var ordenados = datos.slice().sort(function(a, b) { return a - b; });
+    var ordenados = datos.slice().sort(function (a, b) { return a - b; });
     var mitad = Math.floor(ordenados.length / 2);
     if (ordenados.length % 2 === 0) {
         return (ordenados[mitad - 1] + ordenados[mitad]) / 2;
@@ -74,7 +74,7 @@ function calcularDesviacion(varianza) {
 /* ── FUNCIÓN: calcularRango ──
    Diferencia entre el valor máximo y el mínimo */
 function calcularRango(datos) {
-    var ordenados = datos.slice().sort(function(a, b) { return a - b; });
+    var ordenados = datos.slice().sort(function (a, b) { return a - b; });
     return ordenados[ordenados.length - 1] - ordenados[0];
 }
 
@@ -82,11 +82,11 @@ function calcularRango(datos) {
    Agrupa los datos en intervalos y calcula frecuencias */
 function calcularFrecuencias(datos) {
     var intervalos = [
-        { etiqueta: '0 – 2',  min: 0,  max: 2  },
-        { etiqueta: '2 – 4',  min: 2,  max: 4  },
-        { etiqueta: '4 – 6',  min: 4,  max: 6  },
-        { etiqueta: '6 – 8',  min: 6,  max: 8  },
-        { etiqueta: '8 – 10', min: 8,  max: 10 }
+        { etiqueta: '0 – 2', min: 0, max: 2 },
+        { etiqueta: '2 – 4', min: 2, max: 4 },
+        { etiqueta: '4 – 6', min: 4, max: 6 },
+        { etiqueta: '6 – 8', min: 6, max: 8 },
+        { etiqueta: '8 – 10', min: 8, max: 10 }
     ];
     for (var i = 0; i < intervalos.length; i++) {
         intervalos[i].absoluta = 0;
@@ -104,10 +104,35 @@ function calcularFrecuencias(datos) {
         }
     }
     for (var m = 0; m < intervalos.length; m++) {
-        intervalos[m].relativa   = (intervalos[m].absoluta / datos.length).toFixed(4);
+        intervalos[m].relativa = (intervalos[m].absoluta / datos.length).toFixed(4);
         intervalos[m].porcentual = ((intervalos[m].absoluta / datos.length) * 100).toFixed(2) + '%';
     }
     return intervalos;
+}
+
+/* ── FUNCIÓN: renderizarIndicadores ──
+   Llama a todas las funciones estadísticas e inyecta
+   los resultados en las tarjetas del HTML */
+function renderizarIndicadores() {
+    var media = calcularMedia(calificaciones);
+    var mediana = calcularMediana(calificaciones);
+    var moda = calcularModa(calificaciones);
+    var varianza = calcularVarianza(calificaciones, media);
+    var desviacion = calcularDesviacion(varianza);
+    var rango = calcularRango(calificaciones);
+    var ordenados = calificaciones.slice().sort(function (a, b) { return a - b; });
+    var minimo = ordenados[0];
+    var maximo = ordenados[ordenados.length - 1];
+
+    document.getElementById('ind-total').textContent = calificaciones.length;
+    document.getElementById('ind-media').textContent = media.toFixed(2);
+    document.getElementById('ind-mediana').textContent = mediana.toFixed(2);
+    document.getElementById('ind-moda').textContent = moda.toFixed(1);
+    document.getElementById('ind-min').textContent = minimo.toFixed(1);
+    document.getElementById('ind-max').textContent = maximo.toFixed(1);
+    document.getElementById('ind-rango').textContent = rango.toFixed(1);
+    document.getElementById('ind-varianza').textContent = varianza.toFixed(2);
+    document.getElementById('ind-desviacion').textContent = desviacion.toFixed(2);
 }
 
 /* ── CONFIGURACIÓN GLOBAL DE CHART.JS ──
