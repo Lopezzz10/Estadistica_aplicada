@@ -282,7 +282,116 @@
         </div>
     </section>
 
-<!-- ── SECCIÓN QUIZ ──
+    <!-- ── SECCIÓN UNIDAD 4 — ANÁLISIS ESTADÍSTICO ── -->
+    <section id="unidad4">
+        <div class="etiqueta-seccion">// 04 · Sistema de Análisis</div>
+        <h2>Calificaciones <span style="color:var(--acento);">Estudiantiles</span></h2>
+        <p class="intro-seccion">Análisis estadístico completo de 100 registros de calificaciones. Indicadores
+            automáticos, tabla de frecuencias, alertas y gráficos.</p>
+
+        <!-- PANEL DE INDICADORES -->
+        <div class="cuadricula-indicadores">
+            <div class="tarjeta-indicador">
+                <div class="ind-etiqueta">Total registros</div>
+                <div class="ind-valor" id="ind-total">—</div>
+            </div>
+            <div class="tarjeta-indicador">
+                <div class="ind-etiqueta">Media</div>
+                <div class="ind-valor" id="ind-media">—</div>
+            </div>
+            <div class="tarjeta-indicador">
+                <div class="ind-etiqueta">Mediana</div>
+                <div class="ind-valor" id="ind-mediana">—</div>
+            </div>
+            <div class="tarjeta-indicador">
+                <div class="ind-etiqueta">Moda</div>
+                <div class="ind-valor" id="ind-moda">—</div>
+            </div>
+            <div class="tarjeta-indicador">
+                <div class="ind-etiqueta">Mínimo</div>
+                <div class="ind-valor" id="ind-min">—</div>
+            </div>
+            <div class="tarjeta-indicador">
+                <div class="ind-etiqueta">Máximo</div>
+                <div class="ind-valor" id="ind-max">—</div>
+            </div>
+            <div class="tarjeta-indicador">
+                <div class="ind-etiqueta">Rango</div>
+                <div class="ind-valor" id="ind-rango">—</div>
+            </div>
+            <div class="tarjeta-indicador">
+                <div class="ind-etiqueta">Varianza</div>
+                <div class="ind-valor" id="ind-varianza">—</div>
+            </div>
+            <div class="tarjeta-indicador">
+                <div class="ind-etiqueta">Desv. Estándar</div>
+                <div class="ind-valor" id="ind-desviacion">—</div>
+            </div>
+        </div>
+
+        <!-- TABLA DE FRECUENCIAS -->
+        <div class="seccion-tema">
+            <div class="encabezado-tema">
+                <span class="etiqueta-tema">TABLA</span>
+                <h3>Frecuencias por intervalo</h3>
+            </div>
+            <div class="contenedor-tabla">
+                <table class="tabla-frecuencias">
+                    <thead>
+                        <tr>
+                            <th>Intervalo</th>
+                            <th>Frec. Absoluta</th>
+                            <th>Frec. Relativa</th>
+                            <th>Frec. Porcentual</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cuerpo-tabla-frecuencias">
+                        <!-- JS inyecta las filas aquí -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ALERTAS -->
+        <div class="seccion-tema">
+            <div class="encabezado-tema">
+                <span class="etiqueta-tema">ALERTAS</span>
+                <h3>Detección de valores atípicos</h3>
+            </div>
+            <div id="contenedor-alertas">
+                <!-- JS inyecta las alertas aquí -->
+            </div>
+        </div>
+
+        <!-- GRÁFICOS -->
+        <div class="seccion-tema">
+            <div class="encabezado-tema">
+                <span class="etiqueta-tema">GRÁFICOS</span>
+                <h3>Visualización estadística</h3>
+            </div>
+            <div class="cuadricula-graficos">
+                <div class="contenedor-grafico">
+                    <h4>📈 Evolución de las 100 notas</h4>
+                    <canvas id="graficoLineas100"></canvas>
+                </div>
+                <div class="contenedor-grafico">
+                    <h4>📊 Histograma por intervalo</h4>
+                    <canvas id="graficoHistograma"></canvas>
+                </div>
+                <div class="contenedor-grafico">
+                    <h4>🥧 Aprobados vs Reprobados</h4>
+                    <canvas id="graficoCircular"></canvas>
+                </div>
+                <div class="contenedor-grafico">
+                    <h4>📋 Conteo por nota entera</h4>
+                    <canvas id="graficoBarrasNota"></canvas>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- ── SECCIÓN QUIZ ──
  Contenedor separado con fondo diferente para destacar la evaluación -->
     <div id="quiz"> <!-- id="quiz" para la navegación del menú -->
         <section>
@@ -303,7 +412,8 @@
             <!-- Tarjeta de puntaje final — oculta hasta terminar el quiz -->
             <div class="tarjeta-puntaje" id="tarjetaPuntaje">
                 <div class="numero-puntaje" id="numeroPuntaje">0/5</div> <!-- JS actualiza este número -->
-                <div class="etiqueta-puntaje" id="etiquetaPuntaje">Calculando resultado…</div> <!-- JS pone elmensaje -->
+                <div class="etiqueta-puntaje" id="etiquetaPuntaje">Calculando resultado…</div>
+                <!-- JS pone elmensaje -->
                 <button class="boton boton-principal" onclick="reiniciarQuiz()" style="margin-top:1.5rem;">Intentar de
                     nuevo</button>
             </div>
