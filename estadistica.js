@@ -154,6 +154,52 @@ function renderizarTablaFrecuencias() {
     cuerpo.innerHTML = html;
 }
 
+/* ── FUNCIÓN: renderizarAlertas ──
+ Detecta valores atípicos usando media ± 2*desviacion
+ e inyecta los resultados en el HTML */
+function renderizarAlertas() {
+    var media = calcularMedia(calificaciones);
+    var varianza = calcularVarianza(calificaciones, media);
+    var desviacion = calcularDesviacion(varianza);
+    var umbralSup = media + 2 * desviacion;
+    var umbralInf = media - 2 * desviacion;
+    var atipicos = [];
+    for (var i = 0; i < calificaciones.length; i++) {
+        if (calificaciones[i] > umbralSup || calificaciones[i] < umbralInf) {
+            atipicos.push({ posicion: i + 1, valor: calificaciones[i] });
+        }
+    }
+    var contenedor = document.getElementById('contenedor-alertas');
+    var html = '';
+    /* Bloque de resumen con umbrales */
+    html +=
+        '<div class="alerta-resumen">' +
+        '<div class="fila-resultado"><span>Media (μ)</span><span>' +
+        media.toFixed(2) + '</span></div>' +
+        '<div class="fila-resultado"><span>Desviación estándar (σ)</span><span>' +
+        desviacion.toFixed(2) + '</span></div>' +
+        '<div class="fila-resultado"><span>Umbral superior (μ + 2σ)</span><span>' +
+        umbralSup.toFixed(2) + '</span></div>' +
+        '<div class="fila-resultado"><span>Umbral inferior (μ − 2σ)</span><span>' +
+        umbralInf.toFixed(2) + '</span></div>' +
+        '<div class="fila-resultado"><span>Valores atípicos detectados</span><span style = "color:var(--peligro);" > ' + atipicos.length + '</span ></div > ' +'</div>';
+    /* Lista de valores atípicos o mensaje de normalidad */
+    if (atipicos.length === 0) {
+        html += '<div class="badge-normal">✔ Todos los valores están dentro del rango normal</div > ';
+    } else {
+        html += '<div class="lista-atipicos">';
+        for (var j = 0; j < atipicos.length; j++) {
+            html +=
+                '<div class="badge-atipico">' +
+                '⚠ Estudiante #' + atipicos[j].posicion +
+                ' — Nota: <strong>' + atipicos[j].valor.toFixed(1) + '</strong>' +
+                '</div>';
+        }
+        html += '</div>';
+    }
+    contenedor.innerHTML = html;
+}
+
 /* ── CONFIGURACIÓN GLOBAL DE CHART.JS ──
 Estos valores se aplican a todos los gráficos del sitio automáticamente.
 Se definen una sola vez aquí para no repetirlos en cada gráfico. */
