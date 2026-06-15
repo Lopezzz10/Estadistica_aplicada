@@ -17,6 +17,7 @@
         <a href="#temas">Temas</a> <!-- Lleva a la sección de bloques temáticos -->
         <a href="#ejemplos">Ejemplos</a> <!-- Lleva a la sección de temas con ejemplos -->
         <a href="#quiz">Test</a> <!-- Lleva al quiz de evaluación -->
+        <a href="#registro">Registro</a>
         <a href="#unidad4">Análisis</a>
         <a href="#comparativas">Comparativas</a>
     </nav>
@@ -283,6 +284,117 @@
         </div>
     </section>
 
+    <!-- ── SECCIÓN REGISTRO DE DATOS ── -->
+    <section id="registro">
+        <div class="etiqueta-seccion">// 03.5 · Ingreso de datos</div>
+        <h2>Registro de <span style="color:var(--acento);">Estudiantes</span></h2>
+        <p class="intro-seccion">Ingresa nuevos registros manualmente. Los datos se incorporan al análisis estadístico en tiempo real.</p>
+
+        <!-- Barra superior: contador + botón toggle -->
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:1.5rem;">
+            <div style="display:flex;align-items:center;gap:0.75rem;">
+                <span style="font-size:0.8rem;color:var(--apagado);text-transform:uppercase;letter-spacing:.08em;">Total en memoria:</span>
+                <span id="contador-registros" style="background:var(--acento);color:#000;font-weight:700;font-size:0.82rem;padding:0.25rem 0.75rem;border-radius:999px;">10 registros</span>
+            </div>
+            <button id="btn-toggle-form" class="boton boton-principal" onclick="toggleFormulario()" style="font-size:0.9rem;padding:0.6rem 1.2rem;">
+                + Agregar estudiante
+            </button>
+        </div>
+
+        <!-- Panel del formulario (oculto por defecto) -->
+        <div id="panel-formulario" style="display:none;">
+            <div class="seccion-tema">
+                <div class="encabezado-tema">
+                    <span class="etiqueta-tema">FORMULARIO</span>
+                    <h3>Nuevo registro</h3>
+                </div>
+
+                <!-- Mensaje de feedback -->
+                <div id="form-mensaje" style="display:none;" class="form-mensaje"></div>
+
+                <!-- Fila 1: datos personales -->
+                <div class="form-fila">
+                    <div class="form-grupo">
+                        <label class="form-label" for="form-nombre">Nombre completo *</label>
+                        <input class="form-input" type="text" id="form-nombre" placeholder="Ej: María García" maxlength="60" />
+                    </div>
+                    <div class="form-grupo form-grupo-sm">
+                        <label class="form-label" for="form-genero">Género *</label>
+                        <select class="form-input" id="form-genero">
+                            <option value="M">♂ Masculino</option>
+                            <option value="F">♀ Femenino</option>
+                        </select>
+                    </div>
+                    <div class="form-grupo form-grupo-sm">
+                        <label class="form-label" for="form-edad">Edad *</label>
+                        <input class="form-input" type="number" id="form-edad" placeholder="20" min="15" max="99" />
+                    </div>
+                    <div class="form-grupo form-grupo-sm">
+                        <label class="form-label" for="form-asistencia">Asistencia % *</label>
+                        <input class="form-input" type="number" id="form-asistencia" placeholder="85" min="0" max="100" step="0.1" />
+                    </div>
+                </div>
+
+                <!-- Fila 2: las 10 notas -->
+                <div style="margin-top:1.5rem;">
+                    <p class="form-label" style="margin-bottom:0.75rem;">10 Calificaciones (0 – 10) *</p>
+                    <div class="form-notas-grid">
+                        <div class="form-grupo-nota">
+                            <label class="form-label-nota" for="form-nota1">Nota 1</label>
+                            <input class="form-input form-input-nota" type="number" id="form-nota1" placeholder="0" min="0" max="10" step="0.1" />
+                        </div>
+                        <div class="form-grupo-nota">
+                            <label class="form-label-nota" for="form-nota2">Nota 2</label>
+                            <input class="form-input form-input-nota" type="number" id="form-nota2" placeholder="0" min="0" max="10" step="0.1" />
+                        </div>
+                        <div class="form-grupo-nota">
+                            <label class="form-label-nota" for="form-nota3">Nota 3</label>
+                            <input class="form-input form-input-nota" type="number" id="form-nota3" placeholder="0" min="0" max="10" step="0.1" />
+                        </div>
+                        <div class="form-grupo-nota">
+                            <label class="form-label-nota" for="form-nota4">Nota 4</label>
+                            <input class="form-input form-input-nota" type="number" id="form-nota4" placeholder="0" min="0" max="10" step="0.1" />
+                        </div>
+                        <div class="form-grupo-nota">
+                            <label class="form-label-nota" for="form-nota5">Nota 5</label>
+                            <input class="form-input form-input-nota" type="number" id="form-nota5" placeholder="0" min="0" max="10" step="0.1" />
+                        </div>
+                        <div class="form-grupo-nota">
+                            <label class="form-label-nota" for="form-nota6">Nota 6</label>
+                            <input class="form-input form-input-nota" type="number" id="form-nota6" placeholder="0" min="0" max="10" step="0.1" />
+                        </div>
+                        <div class="form-grupo-nota">
+                            <label class="form-label-nota" for="form-nota7">Nota 7</label>
+                            <input class="form-input form-input-nota" type="number" id="form-nota7" placeholder="0" min="0" max="10" step="0.1" />
+                        </div>
+                        <div class="form-grupo-nota">
+                            <label class="form-label-nota" for="form-nota8">Nota 8</label>
+                            <input class="form-input form-input-nota" type="number" id="form-nota8" placeholder="0" min="0" max="10" step="0.1" />
+                        </div>
+                        <div class="form-grupo-nota">
+                            <label class="form-label-nota" for="form-nota9">Nota 9</label>
+                            <input class="form-input form-input-nota" type="number" id="form-nota9" placeholder="0" min="0" max="10" step="0.1" />
+                        </div>
+                        <div class="form-grupo-nota">
+                            <label class="form-label-nota" for="form-nota10">Nota 10</label>
+                            <input class="form-input form-input-nota" type="number" id="form-nota10" placeholder="0" min="0" max="10" step="0.1" />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botones de acción -->
+                <div style="display:flex;gap:1rem;margin-top:1.75rem;flex-wrap:wrap;">
+                    <button class="boton boton-principal" onclick="registrarEstudiante()">
+                        ✔ Guardar registro
+                    </button>
+                    <button class="boton boton-secundario" onclick="limpiarFormulario()">
+                        ↺ Limpiar campos
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- ── SECCIÓN UNIDAD 4 — ANÁLISIS ESTADÍSTICO ── -->
     <section id="unidad4">
         <div class="etiqueta-seccion">// 04 · Sistema de Análisis</div>
@@ -416,6 +528,7 @@
                             <th>Nota</th>
                             <th>Asistencia</th>
                             <th>Estado</th>
+                            <th>Acción</th>
                         </tr>
                     </thead>
                     <tbody id="cuerpo-tabla-estudiantes"></tbody>
@@ -569,6 +682,7 @@
 <script src="graficos-demo.js" defer></script>
 <script src="graficos-estadisticos.js" defer></script>
 <script src="quiz.js" defer></script>
+<script src="registro.js" defer></script>
 <script src="inicio.js" defer></script>
 
 </html>

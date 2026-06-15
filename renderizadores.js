@@ -105,6 +105,7 @@ function renderizarTablaEstudiantes() {
             '<td>' + e.nota.toFixed(1) + '</td>' +
             '<td style="color:' + asistColor + ';">' + e.asistencia + '%</td>' +
             '<td>' + estado + '</td>' +
+            '<td><button onclick="eliminarEstudiante(' + e.id + ')" style="background:none;border:1px solid var(--peligro);color:var(--peligro);border-radius:4px;padding:0.2rem 0.5rem;cursor:pointer;font-size:0.78rem;">✕</button></td>' +
             '</tr>';
     });
     tbody.innerHTML = html;
