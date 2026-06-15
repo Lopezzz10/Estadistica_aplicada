@@ -70,7 +70,7 @@ function mostrarPregunta(indice) {
         /* Puntaje actual a la izquierda */
         '<span style="font-family:\'DM Mono\',monospace;font-size:0.8rem;color:var(--apagado) ">Puntuación: ' + puntaje + '/' + indice + '</span>' +
         /* Botón siguiente oculto — JS lo muestra cuando el usuario responde */
-        '<button class="boton boton-secundario" id="btnSiguiente" onclick="siguientePregunta()"style = "display:none;" > ' + textoBtnSig + '</button > ' + '</div>';
+        '<button class="boton boton-secundario" id="btnSiguiente" onclick="siguientePregunta()" style="display:none;">' + textoBtnSig + '</button>' + '</div>';
 }
 
 /* ── FUNCIÓN: elegirOpcion ──

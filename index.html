@@ -18,6 +18,7 @@
         <a href="#ejemplos">Ejemplos</a> <!-- Lleva a la sección de temas con ejemplos -->
         <a href="#quiz">Test</a> <!-- Lleva al quiz de evaluación -->
         <a href="#unidad4">Análisis</a>
+        <a href="#comparativas">Comparativas</a>
     </nav>
 
     <!-- ── PORTADA ──
@@ -327,6 +328,14 @@
                 <div class="ind-etiqueta">Desv. Estándar</div>
                 <div class="ind-valor" id="ind-desviacion">—</div>
             </div>
+            <div class="tarjeta-indicador">
+                <div class="ind-etiqueta">Asist. Promedio</div>
+                <div class="ind-valor" id="ind-asist-prom">—</div>
+            </div>
+            <div class="tarjeta-indicador">
+                <div class="ind-etiqueta">Correlación Asist/Nota</div>
+                <div class="ind-valor" id="ind-correlacion">—</div>
+            </div>
         </div>
 
         <!-- TABLA DE FRECUENCIAS -->
@@ -385,6 +394,129 @@
                 <div class="contenedor-grafico">
                     <h4>📋 Conteo por nota entera</h4>
                     <canvas id="graficoBarrasNota"></canvas>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- TABLA COMPLETA DE ESTUDIANTES -->
+        <div class="seccion-tema">
+            <div class="encabezado-tema">
+                <span class="etiqueta-tema">DATOS</span>
+                <h3>Registro completo de estudiantes</h3>
+            </div>
+            <div class="contenedor-tabla" style="overflow-x:auto;">
+                <table class="tabla-frecuencias">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Nombre</th>
+                            <th>Género</th>
+                            <th>Edad</th>
+                            <th>Nota</th>
+                            <th>Asistencia</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cuerpo-tabla-estudiantes"></tbody>
+                </table>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- ── SECCIÓN COMPARATIVAS ── -->
+    <section id="comparativas">
+        <div class="etiqueta-seccion">// 05 · Análisis Comparativo</div>
+        <h2>Comparativas <span style="color:var(--acento);">por variable</span></h2>
+        <p class="intro-seccion">Cruce de calificaciones con género, edad y asistencia para identificar patrones estadísticos.</p>
+
+        <!-- ANÁLISIS POR GÉNERO -->
+        <div class="seccion-tema">
+            <div class="encabezado-tema">
+                <span class="etiqueta-tema">GÉNERO</span>
+                <h3>Promedio hombres vs mujeres</h3>
+            </div>
+            <div class="contenedor-tabla" style="margin-bottom:1.5rem;">
+                <table class="tabla-frecuencias">
+                    <thead>
+                        <tr>
+                            <th>Grupo</th>
+                            <th>Cantidad</th>
+                            <th>Promedio</th>
+                            <th>Nota máx.</th>
+                            <th>Nota mín.</th>
+                            <th>Aprobados</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-genero-body"></tbody>
+                </table>
+            </div>
+            <div class="cuadricula-graficos" style="grid-template-columns:1fr;">
+                <div class="contenedor-grafico">
+                    <h4>📊 Comparativo estadístico por género</h4>
+                    <canvas id="graficoGenero"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- ANÁLISIS POR EDAD -->
+        <div class="seccion-tema">
+            <div class="encabezado-tema">
+                <span class="etiqueta-tema">EDAD</span>
+                <h3>Rendimiento por rango de edad</h3>
+            </div>
+            <div class="contenedor-tabla" style="margin-bottom:1.5rem;">
+                <table class="tabla-frecuencias">
+                    <thead>
+                        <tr>
+                            <th>Rango</th>
+                            <th>Estudiantes</th>
+                            <th>Promedio</th>
+                            <th>Aprobados</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-edad-body"></tbody>
+                </table>
+            </div>
+            <div class="cuadricula-graficos" style="grid-template-columns:1fr;">
+                <div class="contenedor-grafico">
+                    <h4>📊 Promedio de nota por rango de edad</h4>
+                    <canvas id="graficoEdad"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- ANÁLISIS ASISTENCIA VS NOTA -->
+        <div class="seccion-tema">
+            <div class="encabezado-tema">
+                <span class="etiqueta-tema">ASISTENCIA</span>
+                <h3>¿Más asistencia = mejor nota?</h3>
+            </div>
+            <p style="margin-bottom:1rem;color:var(--apagado);font-size:0.92rem;">
+                Cruce entre el porcentaje de asistencia y el promedio de calificaciones. La correlación se muestra en el panel de indicadores.
+            </p>
+            <div class="contenedor-tabla" style="margin-bottom:1.5rem;">
+                <table class="tabla-frecuencias">
+                    <thead>
+                        <tr>
+                            <th>Asistencia</th>
+                            <th>Estudiantes</th>
+                            <th>Promedio nota</th>
+                            <th>Aprobados</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-asistencia-body"></tbody>
+                </table>
+            </div>
+            <div class="cuadricula-graficos">
+                <div class="contenedor-grafico">
+                    <h4>📊 Promedio de nota según franja de asistencia</h4>
+                    <canvas id="graficoAsistencia"></canvas>
+                </div>
+                <div class="contenedor-grafico">
+                    <h4>🔵 Dispersión: asistencia vs nota (por género)</h4>
+                    <canvas id="graficoScatter"></canvas>
                 </div>
             </div>
         </div>
