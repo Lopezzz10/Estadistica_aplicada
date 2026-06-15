@@ -1,5 +1,6 @@
 /* ── renderizarIndicadores ── */
 function renderizarIndicadores() {
+    // Llama a funciones estadísticas externas pasándoles la lista actual de estudiantes
     var notas = obtenerNotas(calificaciones);
     var media     = calcularMedia(notas);
     var mediana   = calcularMediana(notas);
@@ -7,10 +8,13 @@ function renderizarIndicadores() {
     var varianza  = calcularVarianza(notas, media);
     var desviacion = calcularDesviacion(varianza);
     var rango     = calcularRango(notas);
+    
+    // .slice().sort() hace una copia temporal de las notas y las ordena de menor a mayor
     var ordenadas = notas.slice().sort(function (a, b) { return a - b; });
-    var minimo = ordenadas[0];
-    var maximo = ordenadas[ordenadas.length - 1];
+    var minimo = ordenadas[0]; // La primera posición es el valor más bajo
+    var maximo = ordenadas[ordenadas.length - 1]; // La última posición es la más alta
 
+    // .toFixed(2) corta el número decimal para mostrar solo 2 dígitos después del punto
     document.getElementById('ind-total').textContent = calificaciones.length;
     document.getElementById('ind-media').textContent = media.toFixed(2);
     document.getElementById('ind-mediana').textContent = mediana.toFixed(2);
@@ -22,6 +26,7 @@ function renderizarIndicadores() {
     document.getElementById('ind-desviacion').textContent = desviacion.toFixed(2);
 
     /* Nuevos indicadores de asistencia */
+    // .map() extrae únicamente el campo 'asistencia' de todos los objetos para crear una lista limpia de porcentajes
     var asistencias = calificaciones.map(function (e) { return e.asistencia; });
     document.getElementById('ind-asist-prom').textContent = calcularMedia(asistencias).toFixed(1) + '%';
     var corr = calcularCorrelacion(calificaciones);
@@ -34,6 +39,8 @@ function renderizarTablaFrecuencias() {
     var intervalos = calcularFrecuencias(notas);
     var cuerpo = document.getElementById('cuerpo-tabla-frecuencias');
     var html = '';
+    
+    // Construye dinámicamente las filas (<tr>) y celdas (<td>) recorriendo los intervalos estadísticos
     for (var i = 0; i < intervalos.length; i++) {
         html +=
             '<tr>' +
@@ -43,6 +50,7 @@ function renderizarTablaFrecuencias() {
             '<td>' + intervalos[i].porcentual + '</td>' +
             '</tr>';
     }
+    // Reemplaza el contenido del cuerpo de la tabla HTML con la estructura generada en el bucle
     cuerpo.innerHTML = html;
 }
 
@@ -52,9 +60,13 @@ function renderizarAlertas() {
     var media      = calcularMedia(notas);
     var varianza   = calcularVarianza(notas, media);
     var desviacion = calcularDesviacion(varianza);
+    
+    // Define matemáticamente qué es una nota "anormalmente" alta o baja usando la regla de las 2 desviaciones estándar
     var umbralSup  = media + 2 * desviacion;
     var umbralInf  = media - 2 * desviacion;
     var atipicos   = [];
+    
+    // Busca estudiantes cuyas notas estén fuera de los límites aceptables (valores atípicos o outliers)
     for (var i = 0; i < calificaciones.length; i++) {
         var n = calificaciones[i].nota;
         if (n > umbralSup || n < umbralInf) {
@@ -62,6 +74,8 @@ function renderizarAlertas() {
         }
     }
     var contenedor = document.getElementById('contenedor-alertas');
+    
+    // Genera un bloque resumen informativo usando plantillas de texto HTML
     var html =
         '<div class="alerta-resumen">' +
         '<div class="fila-resultado"><span>Media (μ)</span><span>' + media.toFixed(2) + '</span></div>' +
@@ -70,6 +84,8 @@ function renderizarAlertas() {
         '<div class="fila-resultado"><span>Umbral inferior (μ − 2σ)</span><span>' + umbralInf.toFixed(2) + '</span></div>' +
         '<div class="fila-resultado"><span>Valores atípicos detectados</span><span style="color:var(--peligro);">' + atipicos.length + '</span></div>' +
         '</div>';
+        
+    // Si no hay valores extraños muestra un mensaje de éxito; si los hay, los lista uno a uno
     if (atipicos.length === 0) {
         html += '<div class="badge-normal">✔ Todos los valores están dentro del rango normal</div>';
     } else {
@@ -91,11 +107,18 @@ function renderizarTablaEstudiantes() {
     var tbody = document.getElementById('cuerpo-tabla-estudiantes');
     if (!tbody) return;
     var html = '';
+    
+    // .forEach() recorre cada elemento del array calificaciones para dibujar la fila del alumno
     calificaciones.forEach(function (e) {
+        // Operador ternario: si la nota es mayor o igual a 6 define el texto como 'Aprobado', sino 'Reprobado'
         var estado = e.nota >= 6
             ? '<span style="color:var(--exito);">✔ Aprobado</span>'
             : '<span style="color:var(--peligro);">✘ Reprobado</span>';
+            
+        // Aplica colores condicionales en base al porcentaje de asistencia
         var asistColor = e.asistencia >= 75 ? 'var(--exito)' : 'var(--peligro)';
+        
+        // Agrega un botón de eliminación en la última celda vinculado al ID único del estudiante
         html +=
             '<tr>' +
             '<td>' + e.id + '</td>' +
@@ -116,6 +139,8 @@ function renderizarAnalisisGenero() {
     var g = calcularPorGenero(calificaciones);
     var el = document.getElementById('tabla-genero-body');
     if (!el) return;
+    
+    // Imprime la segmentación de datos de hombres vs mujeres de forma estática en dos filas
     el.innerHTML =
         '<tr>' +
         '<td>♂ Hombres</td>' +
@@ -141,7 +166,9 @@ function renderizarAnalisisEdad() {
     var el = document.getElementById('tabla-edad-body');
     if (!el) return;
     var html = '';
+    
     rangos.forEach(function (r) {
+        // Controla que si la cantidad en un rango de edad es 0, no ocurra un error matemático de división por cero
         var pct = r.cantidad ? ((r.aprobados / r.cantidad) * 100).toFixed(0) : 0;
         html +=
             '<tr>' +
@@ -160,6 +187,7 @@ function renderizarAnalisisAsistencia() {
     var el = document.getElementById('tabla-asistencia-body');
     if (!el) return;
     var html = '';
+    
     franjas.forEach(function (f) {
         var pct = f.cantidad ? ((f.aprobados / f.cantidad) * 100).toFixed(0) : 0;
         var color = f.promedio >= 6 ? 'var(--exito)' : 'var(--peligro)';

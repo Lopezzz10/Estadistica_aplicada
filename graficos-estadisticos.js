@@ -1,14 +1,20 @@
+// Declaración de variables globales que almacenarán los objetos e instancias internas de cada gráfico
 var _chartLineas, _chartHistograma, _chartCircular, _chartBarrasNota,
     _chartGenero, _chartEdad, _chartAsistencia, _chartScatter;
 
 function crearGraficoLineas100() {
+    // Genera etiquetas simplificadas para el eje X, Ej: ['E1', 'E2', 'E3'...] para no saturar la vista con nombres completos
     var etiquetas = calificaciones.map(function (e) { return 'E' + e.id; });
     var notas     = obtenerNotas(calificaciones);
     var ctx = document.getElementById('graficoLineas100');
     if (!ctx) return;
+    
+    // Si el gráfico ya existía, se destruye primero para liberar memoria en el navegador
     if (_chartLineas) _chartLineas.destroy();
+    
+    // Inicialización del constructor de Chart.js
     _chartLineas = new Chart(ctx, {
-        type: 'line',
+        type: 'line', // Tipo de gráfico: líneas continuas
         data: {
             labels: etiquetas,
             datasets: [{
@@ -16,17 +22,17 @@ function crearGraficoLineas100() {
                 data: notas,
                 borderColor: '#38bdf8',
                 backgroundColor: 'rgba(56,189,248,0.05)',
-                tension: 0.3,
-                fill: true,
+                tension: 0.3, // Modifica la curvatura de la línea (suavizado)
+                fill: true,   // Rellena de color suave el espacio debajo de la línea
                 pointRadius: 2,
                 pointBackgroundColor: '#38bdf8'
             }]
         },
         options: {
-            plugins: { legend: { display: false } },
+            plugins: { legend: { display: false } }, // Oculta los cuadros informativos superiores
             scales: {
-                x: { grid: { color: '#1e2d45' }, ticks: { maxTicksLimit: 10 } },
-                y: { grid: { color: '#1e2d45' }, min: 0, max: 10 }
+                x: { grid: { color: '#1e2d45' }, ticks: { maxTicksLimit: 10 } }, // Limita la cantidad de etiquetas visibles en X
+                y: { grid: { color: '#1e2d45' }, min: 0, max: 10 } // Fija el rango del eje vertical de notas de manera estricta entre 0 y 10
             }
         }
     });
@@ -42,27 +48,27 @@ function crearHistograma() {
     if (!ctx) return;
     if (_chartHistograma) _chartHistograma.destroy();
     _chartHistograma = new Chart(ctx, {
-        type: 'bar',
+        type: 'bar', // Gráfico de barras verticales
         data: {
             labels: intervalos.map(function (i) { return i.etiqueta; }),
             datasets: [{
                 label: 'Frecuencia',
                 data: intervalos.map(function (i) { return i.absoluta; }),
-                backgroundColor: [
+                backgroundColor: [ // Pasa un array de colores asignando un tono específico para cada una de las 5 barras
                     'rgba(248,113,113,0.7)',
                     'rgba(248,113,113,0.7)',
                     'rgba(56,189,248,0.7)',
                     'rgba(240,192,64,0.8)',
                     'rgba(52,211,153,0.7)'
                 ],
-                borderRadius: 6
+                borderRadius: 6 // Redondea las esquinas superiores de las barras para mejorar la estética
             }]
         },
         options: {
             plugins: { legend: { display: false } },
             scales: {
                 x: { grid: { color: '#1e2d45' } },
-                y: { grid: { color: '#1e2d45' }, beginAtZero: true }
+                y: { grid: { color: '#1e2d45' }, beginAtZero: true } // Fuerza al eje vertical a iniciar siempre en 0
             }
         }
     });
@@ -79,7 +85,7 @@ function crearGraficoCircular() {
     if (!ctx) return;
     if (_chartCircular) _chartCircular.destroy();
     _chartCircular = new Chart(ctx, {
-        type: 'doughnut',
+        type: 'doughnut', // Tipo circular estilo rosquilla o dona
         data: {
             labels: ['Aprobados', 'Reprobados'],
             datasets: [{
@@ -89,7 +95,7 @@ function crearGraficoCircular() {
                 borderWidth: 3
             }]
         },
-        options: { plugins: { legend: { display: true, position: 'bottom' } } }
+        options: { plugins: { legend: { display: true, position: 'bottom' } } } // Muestra las leyendas abajo del gráfico
     });
 }
 
@@ -98,7 +104,9 @@ function crearGraficoCircular() {
    y lo muestra como barras verticales. */
 function crearGraficoBarrasNota() {
     var notas  = obtenerNotas(calificaciones);
-    var conteo = [0,0,0,0,0,0,0,0,0,0,0];
+    var conteo = [0,0,0,0,0,0,0,0,0,0,0]; // Inicializa contadores vacíos desde la nota cero hasta la nota diez
+    
+    // Recorre las notas reales y aproxima al entero más cercano para sumar +1 en la posición de ese índice
     notas.forEach(function (n) { conteo[Math.round(n)]++; });
     var ctx = document.getElementById('graficoBarrasNota');
     if (!ctx) return;
@@ -106,7 +114,7 @@ function crearGraficoBarrasNota() {
     _chartBarrasNota = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: [0,1,2,3,4,5,6,7,8,9,10],
+            labels: [0,1,2,3,4,5,6,7,8,9,10], // Los enteros que saldrán listados debajo de cada barra
             datasets: [{
                 label: 'Estudiantes',
                 data: conteo,
@@ -134,6 +142,7 @@ function crearGraficoGenero() {
         type: 'bar',
         data: {
             labels: ['Promedio', 'Nota máx.', 'Nota mín.'],
+            // Al configurar dos objetos dentro de datasets, Chart.js los dibuja uno al lado del otro automáticamente para comparar
             datasets: [
                 {
                     label: '♂ Hombres',
@@ -223,19 +232,22 @@ function crearScatter() {
     var ctx = document.getElementById('graficoScatter');
     if (!ctx) return;
     if (_chartScatter) _chartScatter.destroy();
+    
+    // Mapea la información transformando cada estudiante en un formato de coordenadas { x: asistencia, y: nota }
     var puntosH = calificaciones.filter(function (e) { return e.genero === 'M'; })
         .map(function (e) { return { x: e.asistencia, y: e.nota }; });
     var puntosM = calificaciones.filter(function (e) { return e.genero === 'F'; })
         .map(function (e) { return { x: e.asistencia, y: e.nota }; });
+        
     _chartScatter = new Chart(ctx, {
-        type: 'scatter',
+        type: 'scatter', // Gráfico de dispersión (puntos flotantes en un plano cartesiano)
         data: {
             datasets: [
                 {
                     label: '♂ Hombres',
                     data: puntosH,
                     backgroundColor: 'rgba(56,189,248,0.6)',
-                    pointRadius: 5
+                    pointRadius: 5 // Tamaño en píxeles de cada burbuja o punto dibujado
                 },
                 {
                     label: '♀ Mujeres',
@@ -252,7 +264,7 @@ function crearScatter() {
                     grid: { color: '#1e2d45' },
                     ticks: { color: '#94a3b8' },
                     title: { display: true, text: 'Asistencia (%)', color: '#94a3b8' },
-                    min: 30, max: 100
+                    min: 30, max: 100 // Acota la visualización de la asistencia entre el 30% y el 100%
                 },
                 y: {
                     grid: { color: '#1e2d45' },
