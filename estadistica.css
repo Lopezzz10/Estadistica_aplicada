@@ -595,6 +595,144 @@ nav a:hover {
     /* Fondo rojo muy tenue */
 }
 
+/* ── ESTILOS UNIDAD 4 — PANEL DE INDICADORES ── */
+.cuadricula-indicadores {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+    margin-bottom: 3rem;
+}
+
+.tarjeta-indicador {
+    background: var(--superficie);
+    border: 1px solid var(--borde);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    box-shadow: var(--sombra-tarjeta);
+    transition: border-color 0.2s, transform 0.2s;
+}
+
+.tarjeta-indicador:hover {
+    border-color: var(--acento);
+    transform: translateY(-3px);
+}
+
+.ind-etiqueta {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--apagado);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+.ind-valor {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.8rem;
+    color: var(--acento);
+    line-height: 1;
+}
+
+/* ── TABLA DE FRECUENCIAS ── */
+.contenedor-tabla {
+    overflow-x: auto;
+    margin-top: 1rem;
+}
+
+.tabla-frecuencias {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.93rem;
+}
+
+.tabla-frecuencias thead tr {
+    background: var(--superficie2);
+    border-bottom: 2px solid var(--acento);
+}
+
+.tabla-frecuencias th {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--acento);
+    padding: 0.85rem 1.25rem;
+    text-align: left;
+}
+
+.tabla-frecuencias td {
+    padding: 0.75rem 1.25rem;
+    border-bottom: 1px solid var(--borde);
+    font-family: 'DM Mono', monospace;
+    color: var(--texto);
+}
+
+.tabla-frecuencias tbody tr:hover {
+    background: var(--superficie2);
+}
+
+.tabla-frecuencias tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* ── ALERTAS ── */
+.alerta-resumen {
+    background: var(--superficie);
+    border: 1px solid var(--borde);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.lista-atipicos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.badge-atipico {
+    background: rgba(248, 113, 113, 0.08);
+    border: 1px solid var(--peligro);
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.82rem;
+    color: var(--peligro);
+}
+
+.badge-normal {
+    background: rgba(52, 211, 153, 0.08);
+    border: 1px solid var(--exito);
+    border-radius: 8px;
+    padding: 0.75rem 1.25rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--exito);
+    margin-top: 1rem;
+    display: inline-block;
+}
+
+/* ── CUADRÍCULA DE GRÁFICOS ── */
+.cuadricula-graficos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+@media (max-width: 600px) {
+    .cuadricula-graficos {
+        grid-template-columns: 1fr;
+    }
+
+    .cuadricula-indicadores {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
 /* ── ESTILOS DEL QUIZ ── */
 /* Fondo diferente para distinguir la sección de evaluación */
 #quiz {
