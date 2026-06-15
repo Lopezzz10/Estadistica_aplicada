@@ -180,13 +180,11 @@ footer {
         opacity: 0;
         transform: translateY(24px);
     }
-
     /* Comienza invisible y abajo */
     to {
         opacity: 1;
         transform: translateY(0);
     }
-
     /* Termina visible en su posición */
 }
 
@@ -196,12 +194,10 @@ footer {
     nav a {
         display: none;
     }
-
     /* Oculta links del nav en móvil */
     .cuadricula-tarjetas {
         grid-template-columns: 1fr;
     }
-
     /* Una columna en móvil */
 }
 
@@ -356,21 +352,10 @@ nav a:hover {
 }
 
 /* Retrasos escalonados para que los elementos aparezcan uno a uno */
-.portada-etiqueta {
-    animation-delay: 0.0s;
-}
-
-.portada h1 {
-    animation-delay: 0.1s;
-}
-
-.portada p {
-    animation-delay: 0.2s;
-}
-
-.portada .grupo-botones {
-    animation-delay: 0.3s;
-}
+.portada-etiqueta { animation-delay: 0.0s; }
+.portada h1       { animation-delay: 0.1s; }
+.portada p        { animation-delay: 0.2s; }
+.portada .grupo-botones { animation-delay: 0.3s; }
 
 /* ── CUADRÍCULA DE TARJETAS ──
    Grid responsivo que ajusta el número de columnas según el ancho disponible */
@@ -576,7 +561,7 @@ nav a:hover {
 }
 
 /* ── CONTENEDOR DE GRÁFICO ──
-Envuelve cada canvas de Chart.js con fondo y padding */
+   Envuelve cada canvas de Chart.js con fondo y padding */
 .contenedor-grafico {
     background: var(--superficie);
     border: 1px solid var(--borde);
@@ -621,7 +606,6 @@ Envuelve cada canvas de Chart.js con fondo y padding */
     max-width: 760px;
 }
 
-/* Más angosto para mejor lectura */
 /* Barra de progreso: 5 segmentos, uno por pregunta */
 .progreso-quiz {
     display: flex;
@@ -632,26 +616,18 @@ Envuelve cada canvas de Chart.js con fondo y padding */
 /* Cada segmento de la barra de progreso */
 .punto-quiz {
     height: 4px;
-    /* Línea delgada */
     flex: 1;
-    /* Todos tienen el mismo ancho */
     border-radius: 2px;
     background: var(--borde);
     /* Gris: no respondido */
     transition: background 0.3s;
-    /* Transición suave al cambiar de color */
 }
 
-.punto-quiz.completado {
-    background: var(--acento);
-}
-
+.punto-quiz.completado { background: var(--acento); }
 /* Dorado: respondido */
-.punto-quiz.activo {
-    background: var(--acento2);
-}
-
+.punto-quiz.activo     { background: var(--acento2); }
 /* Azul: pregunta actual */
+
 /* Tarjeta que contiene la pregunta y sus opciones */
 .tarjeta-pregunta {
     background: var(--superficie2);
@@ -696,8 +672,7 @@ Envuelve cada canvas de Chart.js con fondo y padding */
 /* Efecto hover solo cuando el botón no está deshabilitado */
 .boton-opcion:hover:not(:disabled) {
     border-color: var(--acento2);
-    background:
-        rgba(56, 189, 248, 0.05);
+    background: rgba(56, 189, 248, 0.05);
 }
 
 /* Letra identificadora de la opción (A, B, C, D) */
@@ -736,32 +711,28 @@ Envuelve cada canvas de Chart.js con fondo y padding */
     /* Oculto por defecto, JS lo muestra al responder */
 }
 
-.retroalimentacion.visible {
-    display: block;
-}
+.retroalimentacion.visible { display: block; }
 
 .retroalimentacion.bien {
     background: rgba(52, 211, 153, 0.1);
     border: 1px solid var(--exito);
-    color: var(- -exito);
+    color: var(--exito);
 }
-
 /* Verde: correcto */
+
 .retroalimentacion.mal {
     background: rgba(248, 113, 113, 0.1);
     border: 1px solid var(--peligro);
-    color:
-        var(--peligro);
+    color: var(--peligro);
 }
-
 /* Rojo: incorrecto */
+
 /* Fila con puntaje a la izquierda y botón siguiente a la derecha */
 .navegacion-quiz {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top:
-        1rem;
+    margin-top: 1rem;
 }
 
 /* Tarjeta final con el puntaje total */
@@ -779,7 +750,6 @@ Envuelve cada canvas de Chart.js con fondo y padding */
     display: block;
 }
 
-/* JS agrega esta clase al finalizar */
 /* Número grande con el puntaje obtenido (ej. "4/5") */
 .numero-puntaje {
     font-family: 'Syne', sans-serif;
@@ -795,4 +765,137 @@ Envuelve cada canvas de Chart.js con fondo y padding */
     color: var(--apagado);
     font-size: 1rem;
     margin-bottom: 1.5rem;
+}
+
+/* ── ESTILOS UNIDAD 4 — PANEL DE INDICADORES ── */
+.cuadricula-indicadores {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+    margin-bottom: 3rem;
+}
+
+.tarjeta-indicador {
+    background: var(--superficie);
+    border: 1px solid var(--borde);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    box-shadow: var(--sombra-tarjeta);
+    transition: border-color 0.2s, transform 0.2s;
+}
+
+.tarjeta-indicador:hover {
+    border-color: var(--acento);
+    transform: translateY(-3px);
+}
+
+.ind-etiqueta {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--apagado);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+.ind-valor {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.8rem;
+    color: var(--acento);
+    line-height: 1;
+}
+
+/* ── TABLA DE FRECUENCIAS ── */
+.contenedor-tabla {
+    overflow-x: auto;
+    margin-top: 1rem;
+}
+
+.tabla-frecuencias {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.93rem;
+}
+
+.tabla-frecuencias thead tr {
+    background: var(--superficie2);
+    border-bottom: 2px solid var(--acento);
+}
+
+.tabla-frecuencias th {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--acento);
+    padding: 0.85rem 1.25rem;
+    text-align: left;
+}
+
+.tabla-frecuencias td {
+    padding: 0.75rem 1.25rem;
+    border-bottom: 1px solid var(--borde);
+    font-family: 'DM Mono', monospace;
+    color: var(--texto);
+}
+
+.tabla-frecuencias tbody tr:hover {
+    background: var(--superficie2);
+}
+
+.tabla-frecuencias tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* ── ALERTAS ── */
+.alerta-resumen {
+    background: var(--superficie);
+    border: 1px solid var(--borde);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.lista-atipicos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.badge-atipico {
+    background: rgba(248, 113, 113, 0.08);
+    border: 1px solid var(--peligro);
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.82rem;
+    color: var(--peligro);
+}
+
+.badge-normal {
+    background: rgba(52, 211, 153, 0.08);
+    border: 1px solid var(--exito);
+    border-radius: 8px;
+    padding: 0.75rem 1.25rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--exito);
+    margin-top: 1rem;
+    display: inline-block;
+}
+
+/* ── CUADRÍCULA DE GRÁFICOS ── */
+.cuadricula-graficos {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+@media (max-width: 600px) {
+    .cuadricula-indicadores {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
