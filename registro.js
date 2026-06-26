@@ -202,3 +202,181 @@ document.addEventListener('DOMContentLoaded', function () {
     // Este evento asegura que el script cuente los registros iniciales apenas la página termine de cargar HTML
     actualizarContadorRegistros();
 });
+/* ════════════════════════════════════════════════
+   NOTAS DETALLADAS + EDICIÓN DE NOTAS
+   ════════════════════════════════════════════════ */
+
+var _idEstudianteEditando = null;
+
+/* ── Renderiza la grilla de notas individuales debajo de la tabla principal ── */
+function renderizarNotasDetalladas() {
+    var contenedor = document.getElementById('contenedor-notas-detalladas');
+    if (!contenedor) return;
+
+    var html = '<table style="width:100%;border-collapse:collapse;font-size:0.85rem;">';
+    /* Encabezado */
+    html += '<thead><tr style="border-bottom:2px solid var(--borde);">';
+    html += '<th style="text-align:left;padding:0.5rem 0.6rem;color:var(--apagado);font-weight:600;">Estudiante</th>';
+    for (var h = 1; h <= 10; h++) {
+        html += '<th style="text-align:center;padding:0.5rem 0.3rem;color:var(--apagado);font-weight:600;">N' + h + '</th>';
+    }
+    html += '<th style="text-align:center;padding:0.5rem 0.6rem;color:var(--apagado);font-weight:600;">Prom.</th>';
+    html += '<th style="text-align:center;padding:0.5rem 0.6rem;color:var(--apagado);font-weight:600;">Estado</th>';
+    html += '<th style="text-align:center;padding:0.5rem 0.6rem;color:var(--apagado);font-weight:600;"></th>';
+    html += '</tr></thead><tbody>';
+
+    calificaciones.forEach(function (e, idx) {
+        var promedio = calcularPromedio(e.notas);
+        var aprobado = promedio >= 7;
+        var bg = idx % 2 === 0 ? 'var(--superficie2)' : 'transparent';
+
+        html += '<tr style="background:' + bg + ';border-bottom:1px solid var(--borde);">';
+        html += '<td style="padding:0.5rem 0.6rem;font-weight:600;color:var(--texto);white-space:nowrap;">' + e.nombre + '</td>';
+        e.notas.forEach(function (n) {
+            var nc = n >= 7 ? 'var(--exito)' : 'var(--peligro)';
+            html += '<td style="text-align:center;padding:0.4rem 0.3rem;color:' + nc + ';font-weight:700;">' + n.toFixed(1) + '</td>';
+        });
+        var pc = aprobado ? 'var(--exito)' : 'var(--peligro)';
+        html += '<td style="text-align:center;padding:0.4rem 0.6rem;font-weight:700;color:' + pc + ';">' + promedio.toFixed(2) + '</td>';
+        html += '<td style="text-align:center;padding:0.4rem 0.6rem;white-space:nowrap;">';
+        if (aprobado) {
+            html += '<span style="color:var(--exito);">✔ Aprobado</span>';
+        } else {
+            html += '<span style="color:var(--peligro);">✘ Reprobado</span>';
+        }
+        html += '</td>';
+        html += '<td style="text-align:center;padding:0.4rem 0.6rem;">';
+        html += '<button onclick="abrirModalEditar(' + e.id + ')" style="background:rgba(240,192,64,0.12);border:1px solid var(--acento);color:var(--acento);border-radius:6px;padding:0.2rem 0.6rem;cursor:pointer;font-size:0.78rem;white-space:nowrap;">✎ Editar</button>';
+        html += '</td></tr>';
+    });
+
+    html += '</tbody></table>';
+    contenedor.innerHTML = html;
+}
+
+/* ── Calcula el promedio de un array de notas ── */
+function calcularPromedio(notas) {
+    var suma = 0;
+    for (var i = 0; i < notas.length; i++) suma += notas[i];
+    return Math.round((suma / notas.length) * 100) / 100;
+}
+
+/* ── Abre el modal de edición para el estudiante con ese id ── */
+function abrirModalEditar(id) {
+    var est = null;
+    for (var i = 0; i < calificaciones.length; i++) {
+        if (calificaciones[i].id === id) { est = calificaciones[i]; break; }
+    }
+    if (!est) return;
+
+    _idEstudianteEditando = id;
+
+    document.getElementById('modal-titulo-nombre').textContent = '✎ Editar notas — ' + est.nombre;
+
+    var inputsHTML = '';
+    est.notas.forEach(function (n, i) {
+        inputsHTML +=
+            '<div>' +
+            '<label style="color:var(--apagado);font-size:0.78rem;display:block;margin-bottom:0.2rem;">Nota ' + (i + 1) + '</label>' +
+            '<input id="edit-nota-' + i + '" type="number" min="0" max="10" step="0.1" value="' + n.toFixed(1) + '"' +
+            ' oninput="actualizarPreviewPromedio()"' +
+            ' style="width:100%;background:var(--superficie2);border:1px solid var(--borde);color:var(--texto);border-radius:6px;padding:0.4rem 0.6rem;font-size:0.9rem;box-sizing:border-box;">' +
+            '</div>';
+    });
+    document.getElementById('modal-inputs-notas').innerHTML = inputsHTML;
+
+    actualizarPreviewPromedio();
+    ocultarMensajeModal();
+
+    var modal = document.getElementById('modal-editar-notas');
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+}
+
+/* ── Cierra el modal ── */
+function cerrarModalNotas() {
+    document.getElementById('modal-editar-notas').style.display = 'none';
+    document.body.style.overflow = '';
+    _idEstudianteEditando = null;
+}
+
+/* ── Actualiza el preview del promedio en tiempo real mientras escribe ── */
+function actualizarPreviewPromedio() {
+    var notas = leerNotasModal();
+    if (notas === null) {
+        document.getElementById('modal-preview-promedio').innerHTML = '<span style="color:var(--peligro);">⚠ Notas inválidas</span>';
+        return;
+    }
+    var prom = calcularPromedio(notas);
+    var aprobado = prom >= 7;
+    var color = aprobado ? 'var(--exito)' : 'var(--peligro)';
+    var estado = aprobado ? '✔ Aprobado' : '✘ Reprobado';
+    document.getElementById('modal-preview-promedio').innerHTML =
+        'Promedio: <strong style="color:' + color + ';">' + prom.toFixed(2) + '</strong>' +
+        ' &nbsp;<span style="color:' + color + ';">' + estado + '</span>';
+}
+
+/* ── Lee las 10 notas del modal y las valida ── */
+function leerNotasModal() {
+    var notas = [];
+    for (var i = 0; i < 10; i++) {
+        var input = document.getElementById('edit-nota-' + i);
+        if (!input) return null;
+        var val = parseFloat(input.value);
+        if (isNaN(val) || val < 0 || val > 10) return null;
+        notas.push(Math.round(val * 10) / 10);
+    }
+    return notas;
+}
+
+/* ── Guarda las notas editadas en el array global y refresca todo ── */
+function guardarNotasEditadas() {
+    var notas = leerNotasModal();
+    if (notas === null) {
+        mostrarMensajeModal('⚠ Verifica que todas las notas estén entre 0 y 10.', 'error');
+        return;
+    }
+    for (var i = 0; i < calificaciones.length; i++) {
+        if (calificaciones[i].id === _idEstudianteEditando) {
+            calificaciones[i].notas = notas;
+            calificaciones[i].nota  = calcularPromedio(notas);
+            break;
+        }
+    }
+    refrescarTodo();
+    renderizarNotasDetalladas();
+    mostrarMensajeModal('✔ Notas actualizadas correctamente.', 'exito');
+    setTimeout(cerrarModalNotas, 900);
+}
+
+/* ── Mensajes dentro del modal ── */
+function mostrarMensajeModal(texto, tipo) {
+    var el = document.getElementById('modal-mensaje-editar');
+    el.textContent = texto;
+    el.style.display = 'block';
+    el.style.background = tipo === 'exito' ? 'rgba(52,211,153,0.12)' : 'rgba(248,113,113,0.12)';
+    el.style.color = tipo === 'exito' ? 'var(--exito)' : 'var(--peligro)';
+    el.style.border = '1px solid ' + (tipo === 'exito' ? 'var(--exito)' : 'var(--peligro)');
+}
+function ocultarMensajeModal() {
+    var el = document.getElementById('modal-mensaje-editar');
+    if (el) el.style.display = 'none';
+}
+
+/* ── Cierra el modal al hacer clic fuera ── */
+document.addEventListener('click', function (ev) {
+    var modal = document.getElementById('modal-editar-notas');
+    if (modal && ev.target === modal) cerrarModalNotas();
+});
+
+/* ── Hook: renderizar notas detalladas al cargar y al refrescar ── */
+document.addEventListener('DOMContentLoaded', function () {
+    renderizarNotasDetalladas();
+});
+
+/* ── Parche: asegura que refrescarTodo siempre regenere las notas detalladas ── */
+var _refrescarTodoOriginal = refrescarTodo;
+refrescarTodo = function () {
+    _refrescarTodoOriginal();
+    renderizarNotasDetalladas();
+};

@@ -536,6 +536,34 @@
             </div>
         </div>
 
+        <!-- ── NOTAS DETALLADAS CON EDICIÓN ── -->
+        <div class="seccion-tema" style="margin-top:1.5rem;">
+            <div class="encabezado-tema">
+                <span class="etiqueta-tema">NOTAS</span>
+                <h3>Notas individuales por estudiante</h3>
+            </div>
+            <p style="color:var(--apagado);font-size:0.88rem;margin-bottom:1rem;">
+                Haz clic en <strong style="color:var(--acento);">✎ Editar</strong> para modificar las notas de cualquier estudiante. El promedio y el estado se recalculan automáticamente.
+            </p>
+            <div id="contenedor-notas-detalladas"></div>
+        </div>
+
+        <!-- ── MODAL DE EDICIÓN DE NOTAS ── -->
+        <div id="modal-editar-notas" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:9999;display:none;align-items:center;justify-content:center;">
+            <div style="background:var(--superficie);border:1px solid var(--acento);border-radius:12px;padding:2rem;width:min(520px,92vw);max-height:90vh;overflow-y:auto;">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.2rem;">
+                    <h3 id="modal-titulo-nombre" style="color:var(--acento);margin:0;font-size:1.1rem;">Editar notas</h3>
+                    <button onclick="cerrarModalNotas()" style="background:none;border:1px solid var(--peligro);color:var(--peligro);border-radius:6px;padding:0.3rem 0.7rem;cursor:pointer;font-size:0.9rem;">✕ Cerrar</button>
+                </div>
+                <div id="modal-inputs-notas" style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-bottom:1.2rem;"></div>
+                <div style="display:flex;gap:0.75rem;justify-content:flex-end;flex-wrap:wrap;">
+                    <div id="modal-preview-promedio" style="background:var(--superficie2);border-radius:8px;padding:0.5rem 1rem;font-size:0.9rem;color:var(--texto);flex:1;min-width:160px;"></div>
+                    <button onclick="guardarNotasEditadas()" style="background:var(--acento);color:#0b0f1a;border:none;border-radius:8px;padding:0.6rem 1.4rem;cursor:pointer;font-weight:700;font-size:0.95rem;">✔ Guardar cambios</button>
+                </div>
+                <div id="modal-mensaje-editar" style="display:none;margin-top:0.75rem;padding:0.5rem 0.8rem;border-radius:6px;font-size:0.85rem;"></div>
+            </div>
+        </div>
+
     </section>
 
     <!-- ── SECCIÓN COMPARATIVAS ── -->
